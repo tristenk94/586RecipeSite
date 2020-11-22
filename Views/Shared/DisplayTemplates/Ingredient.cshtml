@@ -1,0 +1,41 @@
+﻿@*
+        defining a partial template to help display/edit list data for ingredients list of a recipe
+        @model IEnumerable<RecipeSiteEpic.Models.Ingredient>
+
+    @model IEnumerable<RecipeSiteEpic.Models.Ingredient>
+    @*<span id="@ViewData.ModelMetadata.PropertyName">@Model</span>*@
+
+@model RecipeSiteEpic.Models.Ingredient
+
+
+<tr>
+    <td>
+        @Model.ingredientName
+
+        @*@Html.DisplayFor(x => x.ingredientName)*@
+
+    </td>
+    <td>
+        @Model.ingredientAmount
+        @*@Html.DisplayFor(x => x.ingredientAmount)*@
+
+    </td>
+</tr>
+        @*foreach (Ingredient i in Model)
+        {
+            @Html.DisplayFor(n => n.ingredientName)
+        }*@
+
+
+        @*if(Model!= null)
+        {
+            @for (int i = 0; i < Model.Count(); i++)
+            {
+                if (Model.ElementAt(i) != null)
+                {
+                    @Html.DisplayFor(n => n.ElementAt(i).ingredientName)
+                    @Html.DisplayFor(n => n.ElementAt(i).ingredientAmount)
+                }
+
+            }
+        }*@

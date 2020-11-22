@@ -1,0 +1,73 @@
+﻿<!--at sign@model IEnumerable<RecipeSiteEpic.Models.Recipe> -->
+@model RecipeSiteEpic.Models.RecipesFoundWithIngredientVM
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form asp-controller="Recipes" asp-action="Index" method="get">
+    <p>
+        Title: <input type="text" name="SearchString"> <!--search string is the ingredeint that helps us search for related recipes or names of it-->
+<input type="submit" value="Filter" />
+    </p>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <!--at sign Html.DisplayNameFor(model => model.Title)-->
+                @Html.DisplayNameFor(model => model.Recipes[0].Title);
+            </th>
+            <th>
+                <!--at signHtml.DisplayNameFor(model => model.Name) -->
+                @Html.DisplayNameFor(model => model.Recipes[0].Name);
+
+            </th>
+            <th>
+                <!--at signHtml.DisplayNameFor(model => model.UploadDate)-->
+                @Html.DisplayNameFor(model => model.Recipes[0].UploadDate);
+
+            </th>
+            <th>
+                <!--at signHtml.DisplayNameFor(model => model.Rating)-->
+                @Html.DisplayNameFor(model => model.Recipes[0].Rating);
+            </th>
+            <!--<th>
+        at signHtml.DisplayNameFor(model => model.timesFavorited)
+    </th>-->
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Recipes)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UploadDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.timesFavorited)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
