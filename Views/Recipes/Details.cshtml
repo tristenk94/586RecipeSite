@@ -1,4 +1,4 @@
-﻿@model RecipeSiteEpic.Models.Recipe
+﻿@model RecipeSiteEpic.ViewModels.RecipeWithIngredientsAndDirectionsVM
 
 @{
     ViewData["Title"] = "Details";
@@ -11,69 +11,59 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Title)
+            @Html.DisplayNameFor(model => model.recipe.Title)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Title)
+            @Html.DisplayFor(model => model.recipe.Title)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.recipe.Name)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.recipe.Name)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.UploadDate)
+            @Html.DisplayNameFor(model => model.recipe.UploadDate)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.UploadDate)
+            @Html.DisplayFor(model => model.recipe.UploadDate)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Rating)
+            @Html.DisplayNameFor(model => model.recipe.Rating)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Rating)
+            @Html.DisplayFor(model => model.recipe.Rating)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.timesFavorited)
+            @Html.DisplayNameFor(model => model.recipe.timesFavorited)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.timesFavorited)
+            @Html.DisplayFor(model => model.recipe.timesFavorited)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Ingredients)
+            @Html.DisplayNameFor(model => model.recipe.Ingredients)
         </dt>
         <dd>
             <table>
-                @if (Model.Ingredients != null)
-                {
-                    @foreach (var ingredient in Model.Ingredients)
+                @* would like to call the RecipeWithIngredientsAndDirectionsVM partial ViewTemplate to display the Ingredients and Directions from here,
+                                so far only recipe displays OK
+
+                    @foreach(var ingredient in Model.Ingredients)
                     {
-
-                       @ingredient.ingredientName
+                        @Html.DisplayFor(i => i.Ingredients)
                     }
-                    
-                }
-                else { 
-              <li>nope nothing found, ingredients was null</li>
-                }
-
-
-
-
-
-
+                *@
             </table>
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Directions)
+            @Html.DisplayNameFor(model => model.recipe.Directions)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Directions)
+            @Html.DisplayFor(model => model.recipe.Directions)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.recipe.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

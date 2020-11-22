@@ -29,9 +29,10 @@ namespace RecipeSiteEpic.Models
             ingredientAmount = iAmt;
         }
 
-        //specify a ienumeraable viewtemplate as inc 
+        /*//specify a ienumeraable viewtemplate as inc 
         [UIHint("ing")]
-        public IEnumerable<Ingredient> ing { get; set; }
+        public IEnumerable<Ingredient> ing { get; set; }*/
+
     }
 
 }

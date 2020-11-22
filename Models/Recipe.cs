@@ -30,10 +30,10 @@ namespace RecipeSiteEpic.Models
         [RegularExpression(@"[1-5]"), StringLength(1)]
         public string Rating { get; set; }
 
-        [Required]
+        //[Required]
         public List<Ingredient> Ingredients { get; set; } //all the ingredients in this recipe, list form
        
-        [Required]
+        //[Required]
         public List<Direction> Directions { get; set; } //all the directions in this recipe, list form
 
         //public List<string>
@@ -58,7 +58,7 @@ namespace RecipeSiteEpic.Models
 
             foreach (Ingredient x in i)
             {
-                if(x.ingredientName == search)
+                if (x.ingredientName == search)
                 {
                     Console.Write("found");
                     return true;//if found a match, exit
@@ -73,8 +73,8 @@ namespace RecipeSiteEpic.Models
 
             Console.Write("called2" + i);
 
-            if(i != null)
-             {
+            if (i != null)
+            {
                 foreach (var x in i)
                 {
                     if (x.ingredientName == search)
@@ -88,9 +88,10 @@ namespace RecipeSiteEpic.Models
             {
                 Console.WriteLine("aaaaaa");
             }
-          
+
             return false; //if got here, none found
         }
-
     }
+
+
 }

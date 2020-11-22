@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RecipeSiteEpic.Data;
 using RecipeSiteEpic.Models;
+using RecipeSiteEpic.ViewModels;
 
 namespace RecipeSiteEpic.Controllers
 {
@@ -46,8 +47,22 @@ namespace RecipeSiteEpic.Controllers
            // return Ok(recipe); 
         }*/
 
-        // GET: Recipes/Details/5
-        public async Task<IActionResult> Details(int? id)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<List<RecipeWithIngredientsAndDirectionsVM>>> GetRecipeWithIngredientsAndDirections(int id)
+        {//we are getting all the ingredients associated with a recipe, dont have to slect from a list, the selecting of a recipe controls that (in recipes controller?)
+            IQueryable<RecipeWithIngredientsAndDirectionsVM> recipeWIAD = from r in _context.Recipe
+                                                                          where r.Id == id
+                                                                          select new RecipeWithIngredientsAndDirectionsVM
+                                                                          {
+                                                                              recipe = r,
+                                                                              ingredients = r.Ingredients,//.Select(i => i.ingredientName).ToList(),
+                                                                              directions = r.Directions,
+                                                                          };
+            return await recipeWIAD.ToListAsync();
+        }
+
+            // GET: Recipes/Details/5
+            public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {

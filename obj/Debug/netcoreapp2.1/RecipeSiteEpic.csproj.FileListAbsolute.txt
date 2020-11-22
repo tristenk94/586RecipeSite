@@ -88,3 +88,4 @@ C:\Users\Sasha\Desktop\THE PROJECT DO NOT DELETE\quickstart\01-login\obj\Debug\n
 C:\Users\Sasha\Desktop\THE PROJECT DO NOT DELETE\quickstart\01-login\obj\Debug\netcoreapp2.1\RecipeSiteEpic.genruntimeconfig.cache
 C:\Users\Sasha\Desktop\THE PROJECT DO NOT DELETE\quickstart\01-login\obj\Debug\netcoreapp2.1\RecipeSiteEpic.csproj.CopyComplete
 C:\Users\Sasha\Desktop\THE PROJECT DO NOT DELETE\quickstart\01-login\obj\Debug\netcoreapp2.1\Razor\Views\Shared\DisplayTemplates\Ingredient.cshtml.g.cs
+C:\Users\Sasha\Desktop\THE PROJECT DO NOT DELETE\quickstart\01-login\obj\Debug\netcoreapp2.1\Razor\Views\RecipeWithIngredientsAndDirectionsVM\RecipeWithIngredientsAndDirectionsVM.cshtml.g.cs

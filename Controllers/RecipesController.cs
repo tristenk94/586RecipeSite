@@ -38,11 +38,11 @@ namespace RecipeSiteEpic.Controllers
                 recipes = recipes.Where(s => s.Name.Contains(searchString) || s.Title.Contains(searchString));
             }
 
-            if(!String.IsNullOrEmpty(recipeIngredient))
+            /*if(!String.IsNullOrEmpty(recipeIngredient)) //TODO return when can properly use ingredients
             {
                 recipes = recipes.Where(x => x.findIngredient(recipeIngredient)); 
                 //uses a helper function to see if an ingredient exists with the ingredient list of a recipe
-            }
+            }*/
 
             var RecipesFoundWithIngredients = new RecipesFoundWithIngredientVM
             {
