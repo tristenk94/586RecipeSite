@@ -1,0 +1,111 @@
+<form (ngSubmit)="onSubmitButtonClick()">
+	<div>
+		<label for="name">
+			Name:
+		</label>
+		<input id="name" name="name" type="text" [(ngModel)]="name" />
+	</div>
+
+	<div>
+		<label for="Title">
+			Recipe Title:
+		</label>
+		<input id="Title" name="Title" type="text" [(ngModel)]="title" />
+	</div>
+
+	<div>
+		<label for="Rating">
+			Rating:
+		</label>
+		<input id="Rating" name="Rating" type="number" [(ngModel)]="rating" />
+	</div>
+
+	<div>
+		<label for="UploadDate">
+			Upload Date:
+		</label>
+		<input id="UploadDate" name="UploadDate" type="text" [(ngModel)]="uploadDate" />
+		<input id="UploadDateButton" type="button" value="Use Today's Date" name="UploadDateButton" (click)="getDate()" />
+	</div>
+
+	<div>
+		<label for="Ingredients">
+			Ingredients:
+		</label>
+		<table>
+			<thead>
+				<tr>
+					<th>Ingredient</th>
+					<th>Amount</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let ingred of ingredients; let i = index">
+					<td>
+						<input [(ngModel)]="ingred.ingredientName" type="text" name="ing-{{i}}">
+					</td>
+					<td>
+						<input [(ngModel)]="ingred.ingredientAmount" type="text" name="amt-{{i}}">
+					</td>
+					<td>
+						<button class="btn btn-default" type="button" (click)="deleteIngInput(i)">Delete</button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input class="form-control" type="text" id="newIngIng" [(ngModel)]="newIngIng" name="newIngIng" />
+					</td>
+					<td>
+						<input class="form-control" type="text" id="newIngAmt" [(ngModel)]="newIngAmt" name="newIngAmt" />
+					</td>
+					<td>
+						<button class="btn btn-default" type="button" (click)="addIngInput()">Add</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<!--add validation text for the data types, then add claims -->
+	<div>
+		<label for="Directions">
+			Directions:
+		</label>
+		<table>
+			<thead>
+				<tr>
+					<th>Step Number</th>
+					<th>Direction</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let direct of directions; let z = index">
+					<td>
+						<input [(ngModel)]="direct.stepNumber" type="number" name="step-{{z}}">
+					</td>
+					<td>
+						<input [(ngModel)]="direct.step" type="text" name="dir-{{z}}">
+					</td>
+					<td>
+						<button class="btn btn-default" type="button" (click)="deleteDirInput(z)">Delete</button>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input class="form-control" type="number" id="newDirStep" [(ngModel)]="newDirNum" name="newDirStep" />
+					</td>
+					<td>
+						<input class="form-control" type="text" id="newDirDir" [(ngModel)]="newDirDir" name="newDirDir" />
+					</td>
+					<td>
+						<button class="btn btn-default" type="button" (click)="addDirInput()">Add</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<!-- <div> revisit when db is up, requires uploading to server/node https://www.youtube.com/watch?v=ASuU4km3VHE
+		<app-image-upload></app-image-upload>
+	</div> -->
+	<button type="submit">{{buttonText}}</button>
+</form>

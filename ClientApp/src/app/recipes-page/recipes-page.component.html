@@ -1,0 +1,8 @@
+<div>
+	<div class="content-box" *ngFor="let recipe of recipes">
+		<a routerLink="/recipes/{{recipe.id}}"> <!-- change url based on id-->
+			<h3>{{recipe.name}}: {{recipe.title}}</h3>
+		</a>
+
+	</div>
+</div>

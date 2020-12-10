@@ -1,0 +1,36 @@
+<div class="content-box">
+	<a routerLink="/recipes">
+		<button>Back</button>
+	</a>
+	<section id="intro">
+		<h2>{{recipe.name}}</h2> <!--picture here, floated middle-->
+		<h3>{{recipe.title}}</h3>
+		<p>Rating: {{recipe.rating}} / 5, Uploaded: {{recipe.uploadDate}}</p>
+	</section>
+
+	<section id="ingred">
+		<div class="content-box">
+			<h3>Ingredients Needed:</h3>
+			<p *ngFor="let Ingredient of recipe.ingredients">{{Ingredient.ingredientName}} - {{Ingredient.ingredientAmount}}</p>
+		</div>
+	</section>
+	
+	<section id="dir">
+		<div class="content-box">
+			<h3>Directions:</h3>
+			<p *ngFor="let Direction of recipe.directions">Step #{{Direction.stepNumber}} <br><blockquote>{{Direction.step}}</blockquote> </p>
+		</div>
+	</section> 
+
+
+	<!-- add to favs here-->
+
+	
+	<!-- add comments box here
+	USE: https://dotcms.com/blog/post/build-a-comments-component-with-angularjs-and-dotcms
+	OR: https://www.linkedin.com/learning/angular-creating-and-hosting-a-full-stack-site/create-a-contact-seller-page
+	-->
+
+
+
+</div>	
