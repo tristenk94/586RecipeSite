@@ -2,7 +2,7 @@
 
 namespace recipesiteangthree.Migrations
 {
-    public partial class makerecipekey : Migration
+    public partial class addingKeys : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

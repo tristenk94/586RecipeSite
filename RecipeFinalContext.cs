@@ -7,9 +7,9 @@ using recipesiteangthree;
 
 namespace recipesiteangthree.ClientApp
 {
-    public class RecipeFinalContext : DbContext
+    public class RecipesTheFinal : DbContext
     {
-        public RecipeFinalContext(DbContextOptions<RecipeFinalContext> options) : base(options)
+        public RecipesTheFinal(DbContextOptions<RecipesTheFinal> options) : base(options)
         {
 
         }

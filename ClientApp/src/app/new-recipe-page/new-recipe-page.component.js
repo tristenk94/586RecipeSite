@@ -13,16 +13,21 @@ var NewRecipePageComponent = /** @class */ (function () {
     function NewRecipePageComponent(router, recipeService) {
         this.router = router;
         this.recipeService = recipeService;
+        //recipeId: string;// = uuid();
+        this.recipe = new types_1.Recipe();
+        this.ingredients = [];
+        this.directions = [];
     }
     NewRecipePageComponent.prototype.ngOnInit = function () {
+        //this.recipe = new Recipe();
     };
     NewRecipePageComponent.prototype.onSubmit = function (_a) {
         //this.recipe.id = uuid(); //give this recipe to have an id
         var _this = this;
-        var name = _a.name, Title = _a.Title, Rating = _a.Rating, UploadDate = _a.UploadDate, Ingredients = _a.Ingredients, Directions = _a.Directions, userid = _a.userid;
+        var name = _a.name, Title = _a.Title, Rating = _a.Rating, UploadDate = _a.UploadDate, userid = _a.userid, Ingredients = _a.Ingredients, Directions = _a.Directions;
         //alert('Yummy, creating a new recipe...');
         //if not just generate the id here and modify everything else to use it...
-        console.log("attempting to create " + this.recipe.id);
+        //console.log("attempting to create " + this.recipe.id );
         /* this.recipeService.createRecipe(this.recipeId, name, Title, Rating, UploadDate, Ingredients).subscribe(() => {
            this.router.navigateByUrl('/my-recipes');
          });*/
@@ -30,17 +35,25 @@ var NewRecipePageComponent = /** @class */ (function () {
         //rid.recipe = recipe;
         //rid.ingredients = ingredients;
         //rid.directions = directions;
-        var ret = new types_1.Recipe();
-        ret.name = name;
-        ret.Title = Title;
-        ret.Rating = Rating;
-        ret.UploadDate = UploadDate;
-        ret.Ingredients = Ingredients;
-        ret.Directions = Directions;
-        ret.userid = userid;
-        this.recipeService.saveRecipe(ret)
+        this.recipe.name = name;
+        this.recipe.Title = Title;
+        this.recipe.Rating = Rating;
+        this.recipe.UploadDate = UploadDate;
+        this.recipe.userid = userid;
+        this.recipe.Directions = Directions;
+        this.recipe.Ingredients = Ingredients;
+        this.recipe.Ingredients.forEach(function (ing) {
+            ing.recipeLink = _this.recipe.id;
+        });
+        this.recipeService.saveRecipe(this.recipe)
             .subscribe(function () {
             _this.router.navigateByUrl('/my-recipes');
+            _this.recipe.Ingredients.forEach(function (ing) {
+                ing.recipeLink = _this.recipe.id;
+            });
+            _this.recipe.Directions.forEach(function (dir) {
+                dir.recipeLink = _this.recipe.id;
+            });
         });
         /* this.recipeService.saveViewModeledRecipe(rid)
            .subscribe(() => {

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace recipesiteangthree.Migrations
 {
-    public partial class RecipeFinalUpdate : Migration
+    public partial class FinalUpdateFinal : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,12 +11,12 @@ namespace recipesiteangthree.Migrations
                 name: "Recipe",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     UploadDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Rating = table.Column<string>(type: "nvarchar(1)", maxLength: 1, nullable: true)
+                    Rating = table.Column<string>(type: "nvarchar(1)", maxLength: 1, nullable: true),
+                    userid = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -27,12 +27,12 @@ namespace recipesiteangthree.Migrations
                 name: "Direction",
                 columns: table => new
                 {
-                    directionId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    directionId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     stepNumber = table.Column<int>(type: "int", nullable: false),
                     step = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    recipeLink = table.Column<int>(type: "int", nullable: false),
-                    RecipeId = table.Column<int>(type: "int", nullable: true)
+                    recipeLink = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    userid = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RecipeId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -49,12 +49,12 @@ namespace recipesiteangthree.Migrations
                 name: "Ingredient",
                 columns: table => new
                 {
-                    ingredientId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ingredientId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ingredientName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ingredientAmount = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    recipeLink = table.Column<int>(type: "int", nullable: false),
-                    RecipeId = table.Column<int>(type: "int", nullable: true)
+                    recipeLink = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    userid = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RecipeId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {

@@ -13,19 +13,21 @@ export class Recipe { //defining recipe type
 
 export class Ingredient //defining ingredient type
 {
-  ingredientId: string;
+  ingredientId: number;
   ingredientName: string;
   ingredientAmount: string;
   userid: string;
+  recipeLink: string;
 }
 
 
 export class Direction //defining direction type
 {
-  directionId: string;
+  directionId: number;
   stepNumber: number;
   step: string;
   userid: string;
+  recipeLink: string;
 }
 
 export class ImageSnippet {

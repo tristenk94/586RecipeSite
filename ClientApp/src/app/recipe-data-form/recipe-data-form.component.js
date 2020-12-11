@@ -16,6 +16,7 @@ var RecipeDataFormComponent = /** @class */ (function () {
         this.recipesService = recipesService;
         this.ingredientsService = ingredientsService;
         this.directionsService = directionsService;
+        this.currentId = null;
         this.currentName = '';
         this.currentTitle = '';
         this.currentRating = 0;
@@ -27,7 +28,7 @@ var RecipeDataFormComponent = /** @class */ (function () {
         this.ingredients = new Array();
         this.directions = new Array();
         this.name = '';
-        this.id = 0;
+        this.id = '';
         this.title = '';
         this.rating = 0;
         this.uploadDate = '';
@@ -38,29 +39,49 @@ var RecipeDataFormComponent = /** @class */ (function () {
     }
     RecipeDataFormComponent.prototype.ngOnInit = function () {
         //console.log(this.currentName + " " + this.currentTitle + " " + this.currentRating + " " + this.currentUploadDate);
+        if (this.currentId != null) {
+            this.id = this.currentId; //save this for when we link recipeid
+        }
         this.name = this.currentName;
         this.title = this.currentTitle;
         this.rating = this.currentRating;
         this.uploadDate = this.currentUploadDate;
-        this.ingredients = this.currentIngredients;
-        this.directions = this.currentDirections;
+        console.log("Current : ");
+        console.log(this.currentIngredients);
+        console.log(this.currentDirections);
+        if (this.currentIngredients == null) {
+            this.ingredients = new Array();
+        }
+        else {
+            this.ingredients = this.currentIngredients;
+        }
+        if (this.currentDirections == null) {
+            this.directions = new Array();
+        }
+        else {
+            this.directions = this.currentDirections;
+        }
     };
     RecipeDataFormComponent.prototype.onSubmitButtonClick = function () {
         /*this.ingredients.forEach(ingred => {
           console.log("found" + ingred.ingredientName + "and " + ingred.ingredientAmount);
         });*/
-        if (this.ingredients[this.ingredients.length - 1].ingredientName == null || this.ingredients[this.ingredients.length - 1].ingredientAmount == null) {
-            //console.log("removing tail end: " + this.ingredients[this.ingredients.length-1]);
-            this.ingredients.pop();
-        }
-        if (this.directions[this.directions.length - 1].step == null || this.directions[this.directions.length - 1].stepNumber == null) {
-            //console.log("removing tail end: " + this.directions[this.directions.length - 1]);
-            this.directions.pop();
-        }
-        /*console.log("new ingred" + this.ingredients);
-        this.ingredients.forEach(ingred => {
-          console.log("found" + ingred.ingredientName + "and " + ingred.ingredientAmount);
-        });*/
+        //if (this.ingredients[this.ingredients.length].ingredientName == null || this.ingredients[this.ingredients.length].ingredientAmount == null) {
+        //console.log("removing tail end: " + this.ingredients[this.ingredients.length-1]);
+        // this.ingredients.pop();
+        //}
+        //if (this.directions[this.directions.length].step == null || this.directions[this.directions.length].stepNumber == null) {
+        //console.log("removing tail end: " + this.directions[this.directions.length - 1]);
+        // this.directions.pop();
+        // }
+        console.log("new ingred" + this.ingredients);
+        this.ingredients.forEach(function (ingred) {
+            console.log("found" + ingred.ingredientName + "and " + ingred.ingredientAmount);
+        });
+        console.log("new direct" + this.directions);
+        this.directions.forEach(function (direct) {
+            console.log("found" + direct.stepNumber + "and " + direct.step);
+        });
         this.onSubmit.emit({
             id: null,
             name: this.name,
@@ -77,15 +98,17 @@ var RecipeDataFormComponent = /** @class */ (function () {
          this.ingredients.forEach(ingred => {
            console.log("found" + ingred.ingredientName + "and " + ingred.ingredientAmount);
          });*/
+        var _this = this;
         var sendIng = new types_1.Ingredient();
         sendIng.ingredientName = this.newIngIng;
         sendIng.ingredientAmount = this.newIngAmt;
-        //sendIng.userid = "1"; //revist with auth?
-        //sendIng.recipeLink = this.id;
+        sendIng.userid = "1"; //revist with auth?
+        sendIng.recipeLink = this.id;
         this.ingredientsService.saveIngredient(sendIng)
-            .subscribe();
-        this.ingredients.push(sendIng);
-        this.newIngIng = '';
+            .subscribe(function (result) {
+            _this.ingredients.push(result); //save the stored ingredient
+        });
+        this.newIngIng = ''; //clear
         this.newIngAmt = '';
         /* console.log("After: ");
          this.ingredients.forEach(ingred => {
@@ -93,22 +116,28 @@ var RecipeDataFormComponent = /** @class */ (function () {
          });*/
     };
     RecipeDataFormComponent.prototype.addDirInput = function () {
+        var _this = this;
         var sendDir = new types_1.Direction();
         sendDir.step = this.newDirDir;
         sendDir.stepNumber = this.newDirNum;
-        //sendDir.userid = "1";
-        this.directions.push(sendDir);
-        //this.newDir = {};
-        this.newDirDir = '';
+        sendDir.userid = "1"; //revist with auth?
+        sendDir.recipeLink = this.id;
+        this.directionsService.saveDirection(sendDir)
+            .subscribe(function (result) {
+            _this.directions.push(result); //save the stored direction
+        });
+        this.newDirDir = ''; //clear
         this.newDirNum = 0;
     };
     RecipeDataFormComponent.prototype.deleteIngInput = function (index) {
-        this.ingredientsService.deleteIngredient(this.ingredients[index - 1].ingredientId)
+        console.log(this.ingredients[index].ingredientId);
+        this.ingredientsService.deleteIngredient(this.ingredients[index].ingredientId)
             .subscribe();
         this.ingredients.splice(index, 1);
     };
     RecipeDataFormComponent.prototype.deleteDirInput = function (index) {
-        this.directionsService.deleteDirection(this.directions[index - 1].directionId)
+        console.log(this.directions[index].directionId);
+        this.directionsService.deleteDirection(this.directions[index].directionId)
             .subscribe();
         this.directions.splice(index, 1);
     };
@@ -119,6 +148,9 @@ var RecipeDataFormComponent = /** @class */ (function () {
     __decorate([
         core_1.Input()
     ], RecipeDataFormComponent.prototype, "buttonText", void 0);
+    __decorate([
+        core_1.Input()
+    ], RecipeDataFormComponent.prototype, "currentId", void 0);
     __decorate([
         core_1.Input()
     ], RecipeDataFormComponent.prototype, "currentName", void 0);

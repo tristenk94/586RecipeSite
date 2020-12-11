@@ -14,9 +14,9 @@ namespace recipesiteangthree.Controllers
     [ApiController]
     public class IngredientsController : ControllerBase
     {
-        private readonly RecipeFinalContext _context;
+        private readonly RecipesTheFinal _context;
 
-        public IngredientsController(RecipeFinalContext context)
+        public IngredientsController(RecipesTheFinal context)
         {
             _context = context;
         }
@@ -30,7 +30,7 @@ namespace recipesiteangthree.Controllers
 
         // GET: api/Ingredients/{RECIPEID}
         [HttpGet("{recipeID}")]
-        public async Task<ActionResult<IEnumerable<Ingredient>>> GetIngredientsForRecipe(int recipeID)
+        public async Task<ActionResult<IEnumerable<Ingredient>>> GetIngredientsForRecipe(string recipeID)
         {
             IQueryable<Ingredient> ingreds = from i in _context.Ingredient
                                              where i.recipeLink == recipeID
@@ -71,7 +71,7 @@ namespace recipesiteangthree.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutIngredient(int id, Ingredient ingredient)
+        public async Task<IActionResult> PutIngredient(string id, Ingredient ingredient)
         {
             if (id != ingredient.ingredientId)
             {
@@ -113,7 +113,7 @@ namespace recipesiteangthree.Controllers
 
         // DELETE: api/Ingredients/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Ingredient>> DeleteIngredient(int id)
+        public async Task<ActionResult<Ingredient>> DeleteIngredient(string id)
         {
             var ingredient = await _context.Ingredient.FindAsync(id);
             if (ingredient == null)
@@ -127,7 +127,7 @@ namespace recipesiteangthree.Controllers
             return ingredient;
         }
 
-        private bool IngredientExists(int id)
+        private bool IngredientExists(string id)
         {
             return _context.Ingredient.Any(e => e.ingredientId == id);
         }

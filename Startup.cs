@@ -30,8 +30,8 @@ namespace recipesiteangthree
                 configuration.RootPath = "ClientApp/dist";
             });
 
-            services.AddDbContext<RecipeFinalContext>(options =>
-           options.UseSqlServer(Configuration.GetConnectionString("RecipeFinalContext")));
+            services.AddDbContext<RecipesTheFinal>(options =>
+           options.UseSqlServer(Configuration.GetConnectionString("RecipesTheFinal")));
 
             services.AddControllers().AddNewtonsoftJson();
         }

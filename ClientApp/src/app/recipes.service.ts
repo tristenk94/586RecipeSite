@@ -48,7 +48,6 @@ export default class RecipesService {
       result = this.http.put<Recipe>(
         `${this.RECIPES_API}/${recipe.id}`,
         recipe);
-
     } else {
       result = this.http.post<Recipe>(this.RECIPES_API, recipe);
     }

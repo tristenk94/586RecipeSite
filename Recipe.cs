@@ -9,9 +9,11 @@ namespace recipesiteangthree
 {
   public class Recipe
   {
-        //id# of recipe
+
+    //id# of recipe
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Key]
-    public int Id { get; set; }
+    public string Id { get; set; }
 
     [StringLength(100, MinimumLength = 3)]
     [Required]

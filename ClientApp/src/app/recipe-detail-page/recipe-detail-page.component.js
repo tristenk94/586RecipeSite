@@ -8,23 +8,28 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RecipeDetailPageComponent = void 0;
 var core_1 = require("@angular/core");
+//import { IngredientsService } from '../ingredients.service';
+var types_1 = require("../types");
 var RecipeDetailPageComponent = /** @class */ (function () {
     function RecipeDetailPageComponent(route, recipesService) {
         this.route = route;
         this.recipesService = recipesService;
         this.isLoading = true; //bool to control display if an object is loading
-        this.recipe = null;
     }
     RecipeDetailPageComponent.prototype.ngOnInit = function () {
         var _this = this;
-        console.log("entered detail");
+        //console.log("entered detail");
         var id = this.route.snapshot.paramMap.get('id');
         this.recipesService.getViewModeledRecipes(id)
             .subscribe(function (VM) {
+            _this.recipe = new types_1.Recipe();
             _this.recipe = VM[0].recipe;
-            console.log(_this.recipe);
             //this.recipe.ingredients = VM[1];
-            //this.recipe.directions = VM[2];
+            _this.recipe.Ingredients = VM[0].ingredients;
+            _this.Ingredients = VM[0].Ingredients;
+            _this.recipe.Directions = VM[0].directions;
+            _this.Directions = VM[0].Directions;
+            // console.log(this.recipe.Ingredients);
             _this.isLoading = false;
         });
         /*this.recipesService.addViewToRecipe(id)

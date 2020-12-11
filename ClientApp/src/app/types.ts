@@ -17,6 +17,7 @@ export class Ingredient //defining ingredient type
   ingredientName: string;
   ingredientAmount: string;
   userid: string;
+  recipeLink: string;
 }
 
 export class Direction //defining direction type
@@ -25,6 +26,7 @@ export class Direction //defining direction type
   stepNumber: number;
   step: string;
   userid: string;
+  recipeLink: string;
 }
 
 export class RecipeIngDirVM {

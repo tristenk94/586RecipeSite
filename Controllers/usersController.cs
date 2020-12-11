@@ -14,9 +14,9 @@ namespace recipesiteangthree.Controllers
     [ApiController]
     public class usersController : ControllerBase
     {
-        private readonly RecipeFinalContext _context;
+        private readonly RecipesTheFinal _context;
 
-        public usersController(RecipeFinalContext context)
+        public usersController(RecipesTheFinal context)
         {
             _context = context;
         }

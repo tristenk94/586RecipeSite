@@ -9,9 +9,9 @@ using recipesiteangthree.ClientApp;
 
 namespace recipesiteangthree.Migrations
 {
-    [DbContext(typeof(RecipeFinalContext))]
-    [Migration("20201209053205_Recipe-Final-Update")]
-    partial class RecipeFinalUpdate
+    [DbContext(typeof(RecipesTheFinal))]
+    [Migration("20201211034116_addingKeys")]
+    partial class addingKeys
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,22 +23,24 @@ namespace recipesiteangthree.Migrations
 
             modelBuilder.Entity("recipesiteangthree.Direction", b =>
                 {
-                    b.Property<int>("directionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                    b.Property<string>("directionId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("RecipeId")
-                        .HasColumnType("int");
+                    b.Property<string>("RecipeId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("recipeLink")
-                        .HasColumnType("int");
+                    b.Property<string>("recipeLink")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("step")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("stepNumber")
                         .HasColumnType("int");
+
+                    b.Property<string>("userid")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("directionId");
 
@@ -49,13 +51,11 @@ namespace recipesiteangthree.Migrations
 
             modelBuilder.Entity("recipesiteangthree.Ingredient", b =>
                 {
-                    b.Property<int>("ingredientId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                    b.Property<string>("ingredientId")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("RecipeId")
-                        .HasColumnType("int");
+                    b.Property<string>("RecipeId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ingredientAmount")
                         .HasColumnType("nvarchar(max)");
@@ -63,8 +63,12 @@ namespace recipesiteangthree.Migrations
                     b.Property<string>("ingredientName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("recipeLink")
-                        .HasColumnType("int");
+                    b.Property<string>("recipeLink")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("userid")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ingredientId");
 
@@ -75,10 +79,8 @@ namespace recipesiteangthree.Migrations
 
             modelBuilder.Entity("recipesiteangthree.Recipe", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -96,6 +98,10 @@ namespace recipesiteangthree.Migrations
 
                     b.Property<DateTime>("UploadDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("userid")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

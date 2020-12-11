@@ -14,9 +14,9 @@ namespace recipesiteangthree.Controllers
     [ApiController]
     public class DirectionsController : ControllerBase
     {
-        private readonly RecipeFinalContext _context;
+        private readonly RecipesTheFinal _context;
 
-        public DirectionsController(RecipeFinalContext context)
+        public DirectionsController(RecipesTheFinal context)
         {
             _context = context;
         }
@@ -31,7 +31,7 @@ namespace recipesiteangthree.Controllers
 
         // GET: api/Directions/{RECIPEID}
         [HttpGet("{recipeID}")]
-        public async Task<ActionResult<IEnumerable<Direction>>> GetDirectionsForRecipe(int recipeID)
+        public async Task<ActionResult<IEnumerable<Direction>>> GetDirectionsForRecipe(string recipeID)
         {
             IQueryable<Direction> directs = from d in _context.Direction
                                              where d.recipeLink == recipeID
@@ -63,7 +63,7 @@ namespace recipesiteangthree.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutDirection(int id, Direction direction)
+        public async Task<IActionResult> PutDirection(string id, Direction direction)
         {
             if (id != direction.directionId)
             {
@@ -105,7 +105,7 @@ namespace recipesiteangthree.Controllers
 
         // DELETE: api/Directions/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Direction>> DeleteDirection(int id)
+        public async Task<ActionResult<Direction>> DeleteDirection(string id)
         {
             var direction = await _context.Direction.FindAsync(id);
             if (direction == null)
@@ -119,7 +119,7 @@ namespace recipesiteangthree.Controllers
             return direction;
         }
 
-        private bool DirectionExists(int id)
+        private bool DirectionExists(string id)
         {
             return _context.Direction.Any(e => e.directionId == id);
         }

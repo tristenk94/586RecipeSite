@@ -15,9 +15,9 @@ namespace recipesiteangthree.Controllers
     [ApiController]
     public class RecipesController : ControllerBase
     {
-        private readonly RecipeFinalContext _context;
+        private readonly RecipesTheFinal _context;
 
-        public RecipesController(RecipeFinalContext context)
+        public RecipesController(RecipesTheFinal context)
         {
             _context = context;
         }
@@ -32,7 +32,7 @@ namespace recipesiteangthree.Controllers
         // GET: api/Recipes/5
         [ResponseType(typeof(RecipeIngDirVM))]
         [HttpGet("{id}")]
-        public async Task<ActionResult<Recipe>> GetRecipe(int id)
+        public async Task<ActionResult<Recipe>> GetRecipe(string id)
         {
 
             // var rec = await _context.Recipe.FindAsync(id);
@@ -70,7 +70,7 @@ namespace recipesiteangthree.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutRecipe(int id, Recipe recipe)
+        public async Task<IActionResult> PutRecipe(string id, Recipe recipe)
         {
             if (id != recipe.Id)
             {
@@ -126,7 +126,7 @@ namespace recipesiteangthree.Controllers
             return recipe;
         }
 
-        private bool RecipeExists(int id)
+        private bool RecipeExists(string id)
         {
             return _context.Recipe.Any(e => e.Id == id);
         }

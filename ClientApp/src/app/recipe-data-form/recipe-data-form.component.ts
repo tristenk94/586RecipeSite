@@ -19,6 +19,7 @@ export class RecipeDataFormComponent implements OnInit {
 
   @Input() buttonText;
 
+  @Input() currentId = null;
   @Input() currentName = '';
   @Input() currentTitle = '';
   @Input() currentRating = 0;
@@ -27,14 +28,13 @@ export class RecipeDataFormComponent implements OnInit {
   @Input() currentDirections = [];
 
   @Output() onSubmit = new EventEmitter<Recipe>();
-
   
   recipe: Recipe = null;
   ingredients: Ingredient[] = new Array<Ingredient>();
   directions: Direction[] = new Array<Direction>();
 
   name: string = '';
-  id: number = 0;
+  id: string = '';
   title: string = '';
   rating: number = 0;
   uploadDate: string = '';
@@ -56,13 +56,30 @@ export class RecipeDataFormComponent implements OnInit {
 
   ngOnInit(): void {
     //console.log(this.currentName + " " + this.currentTitle + " " + this.currentRating + " " + this.currentUploadDate);
-
+    if (this.currentId != null) {
+      this.id = this.currentId; //save this for when we link recipeid
+    }
     this.name = this.currentName;
     this.title = this.currentTitle;
     this.rating = this.currentRating;
     this.uploadDate = this.currentUploadDate;
-    this.ingredients = this.currentIngredients;
-    this.directions = this.currentDirections;
+
+    console.log("Current : ");
+    console.log(this.currentIngredients);
+    console.log(this.currentDirections);
+    if (this.currentIngredients == null) {
+      this.ingredients = new Array<Ingredient>();
+    }
+    else {
+      this.ingredients = this.currentIngredients;
+    }
+
+    if (this.currentDirections == null) {
+      this.directions = new Array<Direction>();
+    }
+    else {
+      this.directions = this.currentDirections;
+    }
   }
 
 
@@ -75,23 +92,29 @@ export class RecipeDataFormComponent implements OnInit {
 
     
 
-    if (this.ingredients[this.ingredients.length - 1].ingredientName == null || this.ingredients[this.ingredients.length - 1].ingredientAmount == null) {
+    //if (this.ingredients[this.ingredients.length].ingredientName == null || this.ingredients[this.ingredients.length].ingredientAmount == null) {
       //console.log("removing tail end: " + this.ingredients[this.ingredients.length-1]);
-      this.ingredients.pop();
-    }
+     // this.ingredients.pop();
+    //}
 
-    if (this.directions[this.directions.length - 1].step == null || this.directions[this.directions.length - 1].stepNumber == null) {
+    //if (this.directions[this.directions.length].step == null || this.directions[this.directions.length].stepNumber == null) {
       //console.log("removing tail end: " + this.directions[this.directions.length - 1]);
-      this.directions.pop();
-    }
+     // this.directions.pop();
+   // }
 
-    /*console.log("new ingred" + this.ingredients);
+    console.log("new ingred" + this.ingredients);
     this.ingredients.forEach(ingred => {
       console.log("found" + ingred.ingredientName + "and " + ingred.ingredientAmount);
-    });*/
+    });
+
+    console.log("new direct" + this.directions);
+    this.directions.forEach(direct => {
+      console.log("found" + direct.stepNumber + "and " + direct.step);
+    });
+
 
     this.onSubmit.emit({
-      id: null,
+      id: null, //not emtting
       name: this.name,
       Title: this.title,
       Rating: this.rating,
@@ -113,14 +136,16 @@ export class RecipeDataFormComponent implements OnInit {
     let sendIng = new Ingredient();
     sendIng.ingredientName = this.newIngIng;
     sendIng.ingredientAmount = this.newIngAmt;
-    //sendIng.userid = "1"; //revist with auth?
-    //sendIng.recipeLink = this.id;
+    sendIng.userid = "1"; //revist with auth?
+    sendIng.recipeLink = this.id;
 
     this.ingredientsService.saveIngredient(sendIng)
-      .subscribe();
-    this.ingredients.push(sendIng);
+      .subscribe(result => {
+        this.ingredients.push(result); //save the stored ingredient
+      })
+        
 
-    this.newIngIng = '';
+    this.newIngIng = ''; //clear
     this.newIngAmt = '';
 
    /* console.log("After: ");
@@ -133,24 +158,28 @@ export class RecipeDataFormComponent implements OnInit {
     let sendDir = new Direction();
     sendDir.step = this.newDirDir;
     sendDir.stepNumber = this.newDirNum;
-    //sendDir.userid = "1";
+    sendDir.userid = "1"; //revist with auth?
+    sendDir.recipeLink = this.id;
 
+    this.directionsService.saveDirection(sendDir)
+      .subscribe(result => {
+        this.directions.push(result); //save the stored direction
+      })
 
-    this.directions.push(sendDir);
-    //this.newDir = {};
-
-    this.newDirDir = '';
+    this.newDirDir = ''; //clear
     this.newDirNum = 0;
   }
 
   deleteIngInput(index) { //on this, delete the ing
-   this.ingredientsService.deleteIngredient(this.ingredients[index-1].ingredientId)
+    console.log(this.ingredients[index].ingredientId);
+   this.ingredientsService.deleteIngredient(this.ingredients[index].ingredientId)
       .subscribe();
     this.ingredients.splice(index, 1);
   }
 
   deleteDirInput(index) {
-    this.directionsService.deleteDirection(this.directions[index - 1].directionId)
+    console.log(this.directions[index].directionId);
+    this.directionsService.deleteDirection(this.directions[index].directionId)
       .subscribe();
     this.directions.splice(index, 1);
   }

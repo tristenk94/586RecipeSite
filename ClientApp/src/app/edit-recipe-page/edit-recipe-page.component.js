@@ -8,12 +8,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.EditRecipePageComponent = void 0;
 var core_1 = require("@angular/core");
-var types_1 = require("../types");
 var EditRecipePageComponent = /** @class */ (function () {
-    function EditRecipePageComponent(route, router, recipeService) {
+    function EditRecipePageComponent(route, router, recipeService, ingredientsService, directionsService) {
         this.route = route;
         this.router = router;
         this.recipeService = recipeService;
+        this.ingredientsService = ingredientsService;
+        this.directionsService = directionsService;
     }
     EditRecipePageComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -21,7 +22,15 @@ var EditRecipePageComponent = /** @class */ (function () {
         this.recipeService.getViewModeledRecipes(id)
             .subscribe(function (VM) {
             _this.recipe = VM[0].recipe;
-            console.log(_this.recipe);
+            //console.log(VM);
+            //console.log(this.recipe);
+            //this.recipe.Directions = VM[0].recipe.directions;
+            _this.recipe.Ingredients = VM[0].ingredients;
+            // console.log(VM[0].ingredients);
+            console.log(_this.recipe.Ingredients);
+            _this.recipe.Directions = VM[0].directions;
+            //console.log(VM[0].directions);
+            console.log(_this.recipe.Ingredients);
         });
         // .subscribe(response => {
         //   this.recipe = response;
@@ -35,17 +44,16 @@ var EditRecipePageComponent = /** @class */ (function () {
     };
     EditRecipePageComponent.prototype.onSubmit = function (_a) {
         var _this = this;
-        var name = _a.name, Title = _a.Title, Rating = _a.Rating, UploadDate = _a.UploadDate, Ingredients = _a.Ingredients, Directions = _a.Directions, userid = _a.userid;
+        var name = _a.name, Title = _a.Title, Rating = _a.Rating, UploadDate = _a.UploadDate, userid = _a.userid, Ingredients = _a.Ingredients, Directions = _a.Directions;
         console.log("onsubmit called ");
-        var ret = new types_1.Recipe();
-        ret.name = name;
-        ret.Title = Title;
-        ret.Rating = Rating;
-        ret.UploadDate = UploadDate;
-        ret.Ingredients = Ingredients;
-        ret.Directions = Directions;
-        ret.userid = userid;
-        this.recipeService.saveRecipe(ret)
+        this.recipe.name = name;
+        this.recipe.Title = Title;
+        this.recipe.Rating = Rating;
+        this.recipe.UploadDate = UploadDate;
+        this.recipe.userid = userid;
+        this.recipe.Directions = Directions;
+        this.recipe.Ingredients = Ingredients;
+        this.recipeService.saveRecipe(this.recipe)
             .subscribe(function () {
             _this.router.navigateByUrl('/my-recipes');
         });

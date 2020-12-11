@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace recipesiteangthree
 {
     public class Ingredient
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public int ingredientId { get; set; }
+        public string ingredientId { get; set; }
         public string ingredientName { get; set; }
         public string ingredientAmount { get; set; }
-        public int recipeLink { get; set; }
+        public string recipeLink { get; set; }
         [Required]
         public string userid { get; set; } //the user id of the person who created this ingredient
 

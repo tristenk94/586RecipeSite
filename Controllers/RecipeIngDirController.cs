@@ -14,9 +14,9 @@ namespace recipesiteangthree.Controllers
     [ApiController]
     public class RecipeIngDirController : ControllerBase
     {
-        private readonly RecipeFinalContext _context;
+        private readonly RecipesTheFinal _context;
 
-        public RecipeIngDirController(RecipeFinalContext context)
+        public RecipeIngDirController(RecipesTheFinal context)
         {
             _context = context;
         }
@@ -24,16 +24,46 @@ namespace recipesiteangthree.Controllers
 
         // GET: api/RecipeIngDir/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<List<RecipeIngDirVM>>> GetRecipeIngDir(int id)
+        public async Task<ActionResult<List<RecipeIngDirVM>>> GetRecipeIngDir(string id)
         {
-            IQueryable<RecipeIngDirVM> RecipeIngDir = from r in _context.Recipe
-                               where r.Id == id
-                               select new RecipeIngDirVM
+            /*IQueryable<RecipeIngDirVM> RecipeIngDir = from r in _context.Recipe
+                                                      from i in _context.Ingredient
+                                                      from d in _context.Direction
+                                                      where r.Id == id
+                                                      //where i.recipeLink == id
+                                                      //where d.recipeLink == id
+                                                      select new RecipeIngDirVM
+                                                      {
+                                                          recipe = r,
+                                                          ingredients = i.
+                                                          directions = d,
+                                                      }
+                              
+                                                      
+                                                      /*select new RecipeIngDirVM
                                {
                                    recipe = r,
-                                   ingredients = r.Ingredients.Select(i => i).ToList(),
-                                   directions = r.Directions.Select(d => d).ToList(),
-                               };
+                                   ingredients = x.Ingredients.Select(i => i).Where(i => i.recipeLink == id).ToList(),
+                                   directions = y.Directions.Select(d => d).Where(d => d.recipeLink == id).ToList(),
+                               };*/
+
+            //the best way i selected all ingredients and directions related to a recipe :D
+            var ingreds = from i in _context.Ingredient
+                              where i.recipeLink == id
+                              select i;
+
+            var directs = from d in _context.Direction
+                             where d.recipeLink == id
+                             select d;
+
+          IQueryable<RecipeIngDirVM> RecipeIngDir = from r in _context.Recipe
+                                                    where r.Id == id
+                                                    select new RecipeIngDirVM
+                                                    {
+                                                        recipe = r,
+                                                        ingredients = ingreds.ToList(),
+                                                        directions = directs.ToList(),
+                                                    };
 
 
             return await RecipeIngDir.ToListAsync();
@@ -44,7 +74,7 @@ namespace recipesiteangthree.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutRecipeIngDir(int id, RecipeIngDirVM RecipeIngDir)
+        public async Task<IActionResult> PutRecipeIngDir(string id, RecipeIngDirVM RecipeIngDir)
         {
             if (id != RecipeIngDir.recipe.Id)
             {
@@ -98,7 +128,7 @@ namespace recipesiteangthree.Controllers
 
         // DELETE: api/RecipeIngDir/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Recipe>> DeleteRecipeIngDir(int id)
+        public async Task<ActionResult<Recipe>> DeleteRecipeIngDir(string id)
         {
             var recipe = await _context.Recipe.FindAsync(id);
             if (recipe == null)
@@ -112,7 +142,7 @@ namespace recipesiteangthree.Controllers
             return recipe;
         }
 
-        private bool RecipeIngDirExists(int id)
+        private bool RecipeIngDirExists(string id)
         {
             return _context.Recipe.Any(e => e.Id == id);
         }

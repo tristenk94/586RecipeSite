@@ -2,6 +2,12 @@
 	<a routerLink="/recipes">
 		<h1 id="app-heading">All Recipes</h1>
 	</a>
+	<div *ngIf="auth.isAuthenticated$ | async">
+		<app-logout-handler></app-logout-handler>
+	</div>
+	<div *ngIf="!auth.isAuthenticated$ | async">
+		<app-login-handler></app-login-handler>
+	</div>
 	<a routerLink="/my-recipes">
 		<button id="my-recipes-button">My Recipes</button>
 	</a>

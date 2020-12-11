@@ -8,17 +8,17 @@
 		<p>Rating: {{recipe.rating}} / 5, Uploaded: {{recipe.uploadDate}}</p>
 	</section>
 
-	<section id="ingred">
+	<section id="ingreed">
 		<div class="content-box">
 			<h3>Ingredients Needed:</h3>
-			<p *ngFor="let Ingredient of recipe.ingredients">{{Ingredient.ingredientName}} - {{Ingredient.ingredientAmount}}</p>
+			<p *ngFor="let ingred of recipe.Ingredients">{{ingred.ingredientName}} - {{ingred.ingredientAmount}}</p>
 		</div>
 	</section>
 	
-	<section id="dir">
+	<section id="diir">
 		<div class="content-box">
 			<h3>Directions:</h3>
-			<p *ngFor="let Direction of recipe.directions">Step #{{Direction.stepNumber}} <br><blockquote>{{Direction.step}}</blockquote> </p>
+			<p *ngFor="let direct of recipe.Directions">Step #{{direct.stepNumber}} <br><blockquote>{{direct.step}}</blockquote> </p>
 		</div>
 	</section> 
 
@@ -28,7 +28,6 @@
 	
 	<!-- add comments box here
 	USE: https://dotcms.com/blog/post/build-a-comments-component-with-angularjs-and-dotcms
-	OR: https://www.linkedin.com/learning/angular-creating-and-hosting-a-full-stack-site/create-a-contact-seller-page
 	-->
 
 

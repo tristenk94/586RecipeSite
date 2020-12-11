@@ -5,6 +5,8 @@ import RecipesService from '../recipes.service';
 //import { IngredientsService } from '../ingredients.service';
 //import { Title } from '@angular/platform-browser';
 import { map } from 'rxjs/operators';
+import IngredientsService from '../ingredients.service';
+import DirectionsService from '../directions.service';
 
 @Component({
   selector: 'app-edit-recipe-page',
@@ -20,15 +22,25 @@ export class EditRecipePageComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private recipeService: RecipesService,
-   // private ingredientsService: IngredientsService,
+    private ingredientsService: IngredientsService,
+    private directionsService: DirectionsService,
   ) { }
 
   ngOnInit(): void { //get the recipe
     const id = this.route.snapshot.paramMap.get('id');
     this.recipeService.getViewModeledRecipes(id)
       .subscribe(VM => {
-       this.recipe = VM[0].recipe;
-        console.log(this.recipe);
+        this.recipe = VM[0].recipe;
+        //console.log(VM);
+        //console.log(this.recipe);
+        //this.recipe.Directions = VM[0].recipe.directions;
+        this.recipe.Ingredients = VM[0].ingredients;
+       // console.log(VM[0].ingredients);
+        console.log(this.recipe.Ingredients);
+
+        this.recipe.Directions = VM[0].directions;
+        //console.log(VM[0].directions);
+        console.log(this.recipe.Ingredients);
       });
 
     // .subscribe(response => {
@@ -43,19 +55,19 @@ export class EditRecipePageComponent implements OnInit {
     //console.log(this.recipe.Ingredients);
   }
 
-  onSubmit({ name, Title, Rating, UploadDate, Ingredients, Directions, userid }): void { //update the recipe
+  onSubmit({ name, Title, Rating, UploadDate, userid, Ingredients, Directions }): void { //update the recipe
+
     console.log("onsubmit called ");
-    let ret = new Recipe();
-    ret.name = name;
-    ret.Title = Title;
-    ret.Rating = Rating;
-    ret.UploadDate = UploadDate;
-    ret.Ingredients = Ingredients;
-    ret.Directions = Directions;
-    ret.userid = userid;
+    this.recipe.name = name;
+    this.recipe.Title = Title;
+    this.recipe.Rating = Rating;
+    this.recipe.UploadDate = UploadDate;
+    this.recipe.userid = userid;
+    this.recipe.Directions = Directions;
+    this.recipe.Ingredients = Ingredients;
     
 
-    this.recipeService.saveRecipe(ret)
+    this.recipeService.saveRecipe(this.recipe)
       .subscribe(() => {
         this.router.navigateByUrl('/my-recipes');
       });
