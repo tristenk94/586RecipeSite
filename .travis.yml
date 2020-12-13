@@ -1,6 +1,37 @@
 language: node_js
+
 node_js:
- - "14"
+  - 14.11.0
+
+cache:
+  directories:
+    - node_modules
+
+branches:
+  only:
+    - master
 
 before_script:
- npm install
+  - npm install
+
+script:
+  - if [[ "$TRAVIS_BRANCH" = "master" ]]; then npm run build; else echo "not a build branch"; fi
+
+before_deploy:
+  - cd $TRAVIS_BUILD_DIR
+  - sed -i '/dist/d' .gitignore
+  - git add . && git commit -m "latest build"
+  
+deploy:
+  - provider: elasticbeanstalk
+    access_key_id: ${AKIAJKJ6OIHVIV76TRCA}             // You have use environment variable name instead of plain text
+    secret_access_key: ${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}     // You have use environment variable name instead of plain text
+    region: "<us-east-1>"            // "ap-south-1"
+    app: "<RecipeSite2>"                     // "demo-application"
+    env: "<Recipesite2-env>"                     // "demo-production"
+    bucket_name: "<recipebucket>" // Once you create new application, it will automatically create a unique bucket for it.
+    on:
+      branch: <master> // For example: - master
+
+after_deploy:
+  - echo "Applcation Deployed!"
