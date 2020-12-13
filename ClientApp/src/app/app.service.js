@@ -50,6 +50,7 @@ var OktaAuthService = /** @class */ (function () {
     function OktaAuthService(router) {
         var _this = this;
         this.router = router;
+        //userName: string; //save tje username for later use
         // IMPORTANT!
         // Replace {clientId} with your actual Client ID
         // Replace {yourOktaDomain} with your actual Okta domain
@@ -113,15 +114,16 @@ var OktaAuthService = /** @class */ (function () {
             });
         });
     };
+    /*  async getInfo() {
+       
+      }*/
     OktaAuthService.prototype.logout = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0:
-                        this.router.navigateByUrl(this.LOGOUT_REDIRECT_URI);
-                        return [4 /*yield*/, this.oktaAuth.signOut({
-                                postLogoutRedirectUri: this.LOGOUT_REDIRECT_URI
-                            })];
+                    case 0: return [4 /*yield*/, this.oktaAuth.signOut({
+                            postLogoutRedirectUri: this.LOGOUT_REDIRECT_URI
+                        })];
                     case 1:
                         _a.sent();
                         return [2 /*return*/];

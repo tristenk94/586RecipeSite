@@ -62,7 +62,18 @@ export class EditRecipePageComponent implements OnInit {
 
     this.recipeService.saveRecipe(this.recipe)
       .subscribe(() => {
+
+        this.recipe.Ingredients.forEach(ing => { //link the ingredients
+          ing.recipeLink = this.recipe.id;
+        });
+
+        this.recipe.Directions.forEach(dir => { //link the directions
+          dir.recipeLink = this.recipe.id;
+        });
+
         this.router.navigateByUrl('/my-recipes');
+
+
       });
   
   }

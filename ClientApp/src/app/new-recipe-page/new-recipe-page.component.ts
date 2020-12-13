@@ -41,7 +41,7 @@ export class NewRecipePageComponent implements OnInit {
 
     this.recipeService.saveRecipe(this.recipe)
       .subscribe(() => {
-        this.router.navigateByUrl('/my-recipes');
+     
        this.recipe.Ingredients.forEach(ing => { //link the ingredients
           ing.recipeLink = this.recipe.id;
         });
@@ -49,6 +49,8 @@ export class NewRecipePageComponent implements OnInit {
         this.recipe.Directions.forEach(dir => { //link the directions
           dir.recipeLink = this.recipe.id;
         });
+
+        this.router.navigateByUrl('/my-recipes');
 
       });
 

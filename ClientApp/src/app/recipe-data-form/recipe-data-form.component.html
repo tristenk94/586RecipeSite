@@ -7,25 +7,25 @@
 	</div>
 
 	<div>
-		<label for="Title">
+		<label for="title">
 			Recipe Title:
 		</label>
-		<input id="Title" name="Title" type="text" [(ngModel)]="title" />
+		<input id="title" name="title" type="text" [(ngModel)]="Title" />
 	</div>
 
 	<div>
-		<label for="Rating">
+		<label for="rating">
 			Rating:
 		</label>
-		<input id="Rating" name="Rating" type="number" [(ngModel)]="rating" />
+		<input id="rating" name="rating" type="number" [(ngModel)]="Rating" />
 	</div>
 
 	<div>
-		<label for="UploadDate">
+		<label for="uploadDate">
 			Upload Date:
 		</label>
-		<input id="UploadDate" name="UploadDate" type="text" [(ngModel)]="uploadDate" />
-		<input id="UploadDateButton" type="button" value="Use Today's Date" name="UploadDateButton" (click)="getDate()" />
+		<input id="uploadDate" name="uploadDate" type="text" [(ngModel)]="UploadDate" />
+		<input id="uploadDateButton" type="button" value="Use Today's Date" name="uploadDateButton" (click)="getDate()" />
 	</div>
 
 	<div>
@@ -40,7 +40,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr *ngFor="let ingred of ingredients; let i = index">
+				<tr *ngFor="let ingred of Ingredients; let i = index">
 					<td>
 						<input [(ngModel)]="ingred.ingredientName" type="text" name="ing-{{i}}">
 					</td>
@@ -79,7 +79,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr *ngFor="let direct of directions; let z = index">
+				<tr *ngFor="let direct of Directions; let z = index">
 					<td>
 						<input [(ngModel)]="direct.stepNumber" type="number" name="step-{{z}}">
 					</td>

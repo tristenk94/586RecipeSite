@@ -25,13 +25,14 @@ var RecipeDataFormComponent = /** @class */ (function () {
         this.currentDirections = [];
         this.onSubmit = new core_1.EventEmitter();
         this.recipe = null;
-        this.ingredients = new Array();
-        this.directions = new Array();
+        this.Ingredients = new Array();
+        this.Directions = new Array();
         this.name = '';
         this.id = '';
-        this.title = '';
-        this.rating = 0;
-        this.uploadDate = '';
+        this.Title = '';
+        this.Rating = 0;
+        this.UploadDate = '';
+        //oktaUserId: string;
         this.newIngIng = ''; //a new ingredient ingredient name holder
         this.newIngAmt = ''; // a new ingredient amount holder
         this.newDirNum = 0; //a new direction number holder
@@ -43,42 +44,46 @@ var RecipeDataFormComponent = /** @class */ (function () {
             this.id = this.currentId; //save this for when we link recipeid
         }
         this.name = this.currentName;
-        this.title = this.currentTitle;
-        this.rating = this.currentRating;
-        this.uploadDate = this.currentUploadDate;
-        console.log("Current : ");
-        console.log(this.currentIngredients);
-        console.log(this.currentDirections);
+        this.Title = this.currentTitle;
+        this.Rating = this.currentRating;
+        this.UploadDate = this.currentUploadDate;
+        //this.oktaUserId = sessionStorage.getItem('userName');
+        //this.oktaUserId = this.oktaAuth.userName; //get username 
+        //console.log("user id: " + this.oktaUserId);
+        //console.log("Current : ");
+        //console.log(this.currentIngredients);
+        //console.log(this.currentDirections);
         if (this.currentIngredients == null) {
-            this.ingredients = new Array();
+            this.Ingredients = new Array();
         }
         else {
-            this.ingredients = this.currentIngredients;
+            this.Ingredients = this.currentIngredients;
         }
         if (this.currentDirections == null) {
-            this.directions = new Array();
+            this.Directions = new Array();
         }
         else {
-            this.directions = this.currentDirections;
+            this.Directions = this.currentDirections;
         }
     };
     RecipeDataFormComponent.prototype.onSubmitButtonClick = function () {
-        console.log("new ingred" + this.ingredients);
-        this.ingredients.forEach(function (ingred) {
-            console.log("found" + ingred.ingredientName + "and " + ingred.ingredientAmount);
+        /*console.log("new ingred" + this.ingredients);
+        this.ingredients.forEach(ingred => {
+          console.log("found" + ingred.ingredientName + "and " + ingred.ingredientAmount);
         });
+    
         console.log("new direct" + this.directions);
-        this.directions.forEach(function (direct) {
-            console.log("found" + direct.stepNumber + "and " + direct.step);
-        });
+        this.directions.forEach(direct => {
+          console.log("found" + direct.stepNumber + "and " + direct.step);
+        });*/
         this.onSubmit.emit({
             id: null,
             name: this.name,
-            Title: this.title,
-            Rating: this.rating,
-            UploadDate: this.uploadDate,
-            Ingredients: this.ingredients,
-            Directions: this.directions,
+            Title: this.Title,
+            Rating: this.Rating,
+            UploadDate: this.UploadDate,
+            Ingredients: this.Ingredients,
+            Directions: this.Directions,
             userid: "1",
         });
     };
@@ -87,11 +92,11 @@ var RecipeDataFormComponent = /** @class */ (function () {
         var sendIng = new types_1.Ingredient();
         sendIng.ingredientName = this.newIngIng;
         sendIng.ingredientAmount = this.newIngAmt;
-        sendIng.userid = "1"; //revist with auth?
-        sendIng.recipeLink = this.id;
+        sendIng.userid = "1", //this.oktaUserId;
+            sendIng.recipeLink = this.id;
         this.ingredientsService.saveIngredient(sendIng)
             .subscribe(function (result) {
-            _this.ingredients.push(result); //save the stored ingredient
+            _this.Ingredients.push(result); //save the stored ingredient
         });
         this.newIngIng = ''; //clear
         this.newIngAmt = '';
@@ -101,30 +106,30 @@ var RecipeDataFormComponent = /** @class */ (function () {
         var sendDir = new types_1.Direction();
         sendDir.step = this.newDirDir;
         sendDir.stepNumber = this.newDirNum;
-        sendDir.userid = "1"; //revist with auth?
+        sendDir.userid = "1"; //this.oktaUserId;
         sendDir.recipeLink = this.id;
         this.directionsService.saveDirection(sendDir)
             .subscribe(function (result) {
-            _this.directions.push(result); //save the stored direction
+            _this.Directions.push(result); //save the stored direction
         });
         this.newDirDir = ''; //clear
         this.newDirNum = 0;
     };
     RecipeDataFormComponent.prototype.deleteIngInput = function (index) {
-        console.log(this.ingredients[index].ingredientId);
-        this.ingredientsService.deleteIngredient(this.ingredients[index].ingredientId)
+        //console.log(this.ingredients[index].ingredientId);
+        this.ingredientsService.deleteIngredient(this.Ingredients[index].ingredientId)
             .subscribe();
-        this.ingredients.splice(index, 1);
+        this.Ingredients.splice(index, 1);
     };
     RecipeDataFormComponent.prototype.deleteDirInput = function (index) {
-        console.log(this.directions[index].directionId);
-        this.directionsService.deleteDirection(this.directions[index].directionId)
+        // console.log(this.directions[index].directionId);
+        this.directionsService.deleteDirection(this.Directions[index].directionId)
             .subscribe();
-        this.directions.splice(index, 1);
+        this.Directions.splice(index, 1);
     };
     RecipeDataFormComponent.prototype.getDate = function () {
-        this.uploadDate = new Date().toDateString();
-        console.log("get date called");
+        this.UploadDate = new Date().toDateString();
+        // console.log("get date called");
     };
     __decorate([
         core_1.Input()

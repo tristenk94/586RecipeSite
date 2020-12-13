@@ -22,11 +22,11 @@ const routes: Routes = [
     path: 'callback',
     component: CallbackComponent
   },
-  /*{
+  {
     path: 'protected',
     component: ProtectedComponent,
     canActivate: [OktaAuthGuard]
-  }*/
+  }
 ];
 
 @NgModule({

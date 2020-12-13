@@ -6,6 +6,8 @@ import IngredientsService from '../ingredients.service';
 import DirectionsService from '../directions.service';
 import { Recipe, Ingredient, Direction, RecipeIngDirVM } from '../types';
 import { v4 as uuid } from 'uuid';
+import { OktaAuthService } from '../app.service';
+
 
 
 @Component({
@@ -30,14 +32,16 @@ export class RecipeDataFormComponent implements OnInit {
   @Output() onSubmit = new EventEmitter<Recipe>();
 
   recipe: Recipe = null;
-  ingredients: Ingredient[] = new Array<Ingredient>();
-  directions: Direction[] = new Array<Direction>();
+  Ingredients: Ingredient[] = new Array<Ingredient>();
+  Directions: Direction[] = new Array<Direction>();
 
   name: string = '';
   id: string = '';
-  title: string = '';
-  rating: number = 0;
-  uploadDate: string = '';
+  Title: string = '';
+  Rating: number = 0;
+  UploadDate: string = '';
+
+  //oktaUserId: string;
 
   newIngIng: string = ''; //a new ingredient ingredient name holder
   newIngAmt: string = ''; // a new ingredient amount holder
@@ -51,8 +55,8 @@ export class RecipeDataFormComponent implements OnInit {
     private recipesService: RecipesService,
     private ingredientsService: IngredientsService,
     private directionsService: DirectionsService,
-
-  ) { }
+    //public oktaAuth: OktaAuthService,
+    ) { }
 
   ngOnInit(): void {
     //console.log(this.currentName + " " + this.currentTitle + " " + this.currentRating + " " + this.currentUploadDate);
@@ -60,25 +64,30 @@ export class RecipeDataFormComponent implements OnInit {
       this.id = this.currentId; //save this for when we link recipeid
     }
     this.name = this.currentName;
-    this.title = this.currentTitle;
-    this.rating = this.currentRating;
-    this.uploadDate = this.currentUploadDate;
+    this.Title = this.currentTitle;
+    this.Rating = this.currentRating;
+    this.UploadDate = this.currentUploadDate;
 
-    console.log("Current : ");
-    console.log(this.currentIngredients);
-    console.log(this.currentDirections);
+    //this.oktaUserId = sessionStorage.getItem('userName');
+    //this.oktaUserId = this.oktaAuth.userName; //get username 
+     //console.log("user id: " + this.oktaUserId);
+
+
+    //console.log("Current : ");
+    //console.log(this.currentIngredients);
+    //console.log(this.currentDirections);
     if (this.currentIngredients == null) {
-      this.ingredients = new Array<Ingredient>();
+      this.Ingredients = new Array<Ingredient>();
     }
     else {
-      this.ingredients = this.currentIngredients;
+      this.Ingredients = this.currentIngredients;
     }
 
     if (this.currentDirections == null) {
-      this.directions = new Array<Direction>();
+      this.Directions = new Array<Direction>();
     }
     else {
-      this.directions = this.currentDirections;
+      this.Directions = this.currentDirections;
     }
   }
 
@@ -86,7 +95,7 @@ export class RecipeDataFormComponent implements OnInit {
 
   onSubmitButtonClick(): void {
 
-    console.log("new ingred" + this.ingredients);
+    /*console.log("new ingred" + this.ingredients);
     this.ingredients.forEach(ingred => {
       console.log("found" + ingred.ingredientName + "and " + ingred.ingredientAmount);
     });
@@ -94,18 +103,18 @@ export class RecipeDataFormComponent implements OnInit {
     console.log("new direct" + this.directions);
     this.directions.forEach(direct => {
       console.log("found" + direct.stepNumber + "and " + direct.step);
-    });
+    });*/
 
 
     this.onSubmit.emit({
       id: null, //not emtting
       name: this.name,
-      Title: this.title,
-      Rating: this.rating,
-      UploadDate: this.uploadDate,
-      Ingredients: this.ingredients,
-      Directions: this.directions,
-      userid: "1", //revisit with auth
+      Title: this.Title,
+      Rating: this.Rating,
+      UploadDate: this.UploadDate,
+      Ingredients: this.Ingredients,
+      Directions: this.Directions,
+      userid: "1",//this.oktaUserId, 
     });
 
 
@@ -117,13 +126,13 @@ export class RecipeDataFormComponent implements OnInit {
     let sendIng = new Ingredient();
     sendIng.ingredientName = this.newIngIng;
     sendIng.ingredientAmount = this.newIngAmt;
-    sendIng.userid = "1"; //revist with auth?
+    sendIng.userid = "1",//this.oktaUserId;
     sendIng.recipeLink = this.id;
 
     this.ingredientsService.saveIngredient(sendIng)
       .subscribe(result => {
-        this.ingredients.push(result); //save the stored ingredient
-      })
+        this.Ingredients.push(result); //save the stored ingredient
+      });
 
 
     this.newIngIng = ''; //clear
@@ -135,35 +144,35 @@ export class RecipeDataFormComponent implements OnInit {
     let sendDir = new Direction();
     sendDir.step = this.newDirDir;
     sendDir.stepNumber = this.newDirNum;
-    sendDir.userid = "1"; //revist with auth?
+    sendDir.userid = "1";//this.oktaUserId;
     sendDir.recipeLink = this.id;
 
     this.directionsService.saveDirection(sendDir)
       .subscribe(result => {
-        this.directions.push(result); //save the stored direction
-      })
+        this.Directions.push(result); //save the stored direction
+      });
 
     this.newDirDir = ''; //clear
     this.newDirNum = 0;
   }
 
   deleteIngInput(index) { //on this, delete the ing
-    console.log(this.ingredients[index].ingredientId);
-    this.ingredientsService.deleteIngredient(this.ingredients[index].ingredientId)
+    //console.log(this.ingredients[index].ingredientId);
+    this.ingredientsService.deleteIngredient(this.Ingredients[index].ingredientId)
       .subscribe();
-    this.ingredients.splice(index, 1);
+    this.Ingredients.splice(index, 1);
   }
 
   deleteDirInput(index) {
-    console.log(this.directions[index].directionId);
-    this.directionsService.deleteDirection(this.directions[index].directionId)
+   // console.log(this.directions[index].directionId);
+    this.directionsService.deleteDirection(this.Directions[index].directionId)
       .subscribe();
-    this.directions.splice(index, 1);
+    this.Directions.splice(index, 1);
   }
 
   getDate() {
-    this.uploadDate = new Date().toDateString();
-    console.log("get date called");
+    this.UploadDate = new Date().toDateString();
+   // console.log("get date called");
   }
 
 

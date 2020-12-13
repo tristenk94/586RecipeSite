@@ -8,8 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RecipeDetailPageComponent = void 0;
 var core_1 = require("@angular/core");
-//import { IngredientsService } from '../ingredients.service';
-var types_1 = require("../types");
 var RecipeDetailPageComponent = /** @class */ (function () {
     function RecipeDetailPageComponent(route, recipesService) {
         this.route = route;
@@ -22,13 +20,16 @@ var RecipeDetailPageComponent = /** @class */ (function () {
         var id = this.route.snapshot.paramMap.get('id');
         this.recipesService.getViewModeledRecipes(id)
             .subscribe(function (VM) {
-            _this.recipe = new types_1.Recipe();
+            //this.recipe = new Recipe();
             _this.recipe = VM[0].recipe;
             //this.recipe.ingredients = VM[1];
             _this.recipe.Ingredients = VM[0].ingredients;
-            _this.Ingredients = VM[0].Ingredients;
+            // this.Ingredients = VM[0].Ingredients;
+            //console.log("Ingreds");
+            // console.log(this.recipe.Ingredients);
+            // console.log(this.Ingredients);
             _this.recipe.Directions = VM[0].directions;
-            _this.Directions = VM[0].Directions;
+            //  this.Directions = VM[0].Directions;
             // console.log(this.recipe.Ingredients);
             _this.isLoading = false;
         });

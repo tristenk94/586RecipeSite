@@ -16,6 +16,7 @@ var new_recipe_page_component_1 = require("./new-recipe-page/new-recipe-page.com
 var my_recipes_page_component_1 = require("./my-recipes-page/my-recipes-page.component");
 var app_guard_1 = require("./app.guard");
 var callback_component_1 = require("./callback.component");
+var protected_component_1 = require("./protected.component");
 var routes = [
     { path: '', redirectTo: '/recipes', pathMatch: 'full' },
     { path: 'recipes', component: recipes_page_component_1.RecipesPageComponent, pathMatch: 'full' },
@@ -27,6 +28,11 @@ var routes = [
         path: 'callback',
         component: callback_component_1.CallbackComponent
     },
+    {
+        path: 'protected',
+        component: protected_component_1.ProtectedComponent,
+        canActivate: [app_guard_1.OktaAuthGuard]
+    }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {

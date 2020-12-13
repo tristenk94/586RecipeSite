@@ -35,33 +35,23 @@ namespace recipesiteangthree.Controllers
         public async Task<ActionResult<Recipe>> GetRecipe(string id)
         {
 
-            // var rec = await _context.Recipe.FindAsync(id);
             var rec = await _context.Recipe.FindAsync(id);
-             //var ing = await _context.Ing
-
+        
             if (rec == null)
             {
                 return NotFound();
             }
 
-            //search for related info if not null
-             //get all ingredients of this recipe
-           /* var ings = from i in _context.Ingredient
-                        where i.recipeLink == id
-                        select i;
+            var ingreds = from i in _context.Ingredient
+                          where i.recipeLink == id
+                          select i;
 
-            var dirs = from d in _context.Direction
-                       where d.recipeLink == id
-                       select d;
+            var directs = from d in _context.Direction
+                          where d.recipeLink == id
+                          select d;
 
-           /* var ret = new RecipeIngDirVM()
-            {
-                recipe = rec,
-                ingredients = (List<Ingredient>)ings,
-                directions = (List<Direction>)dirs,
-            };  */
-           
-
+            rec.Ingredients = ingreds.ToList();
+            rec.Directions = directs.ToList();
 
             return rec;
         }

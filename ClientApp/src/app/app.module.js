@@ -42,11 +42,6 @@ var AppModule = /** @class */ (function () {
             ],
             imports: [
                 platform_browser_1.BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
-                // Import the module into the application, with configuration
-                /* AuthModule.forRoot({
-                   domain: 'dev-3xx3rb0y.us.auth0.com',
-                   clientId: '9fAZ99uPhBDXUiqWD2sPoPQWvBgK7Gik',
-                 }),*/
                 http_1.HttpClientModule,
                 app_routing_module_1.AppRoutingModule,
                 forms_1.FormsModule,

@@ -37,7 +37,7 @@ export default class RecipesService {
   }
 
   getRecipesForUser(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>('/api/users/1');//revisit with authentication
+    return this.http.get<Recipe[]>('/api/users/1');
   }
 
 
@@ -56,87 +56,7 @@ export default class RecipesService {
 
 
   deleteRecipe(id: string) {
-    return this.http.delete(`${this.RECIPES_API}/${id}`);
+    return this.http.delete(`${this.RECIPES_API}/${id.toString()}`);
   }
 
 }
-
-
-
-/*import { Injectable } from '@angular/core';
-import { Recipe, Ingredient, Direction } from './types';
-import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { identifierModuleUrl } from '@angular/compiler';
-
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-  })
-};
-
-//can be injected in any component
-@Injectable({
-  providedIn: 'root'
-})
-export class RecipesService {
-  ret: string;
-
-  constructor(
-    //provide http service
-    private http: HttpClient,
-  ) { }
-
-  //observable is task in which users subscribe to
-  getRecipes() : Observable<Recipe[]> {
-    return this.http.get<Recipe[]>('/api/recipes');
-  }
-
-  getRecipeById(id: string): Observable<Recipe> {
-    //console.log("id called");
-    return this.http.get<Recipe>(`/api/recipes/${id}`);
-  }
-
-  locateRecipeId(name: string, Title: string, Rating: number): Observable<Recipe> {
-   return this.http.post<Recipe>(
-      '/api/recipes/LOCATION',
-      {name, Title, Rating},
-      httpOptions,
-    );
-  }
-
-
-  addViewToRecipe(id: string): Observable<Recipe> {
-   // console.log("view called");
-    return this.http.post<Recipe>(
-      `/api/recipes/${id}/add-view`,
-      {},
-      httpOptions,
-    );
-  }
-  
-  getRecipesForUser(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>('/api/users/1/recipes');//revisit with authentication
-  }
-
-  deleteRecipe(id: string): Observable<any> {
-    return this.http.delete<any>(`/api/recipes/${id}`);
-  }
-
-  createRecipe(id: string, name: string, Title: string, Rating: number, UploadDate: string, Ingredient: Ingredient[]): Observable<Recipe> { //ing and dir go here
-    return this.http.post<Recipe>(
-      '/api/recipes',
-      {id, name, Title, Rating, UploadDate, Ingredient},
-      httpOptions,
-    );
-  } 
-
-  editRecipe(id: string, name: string, Title: string, Rating: number, UploadDate: string, Ingredient: Ingredient[]): Observable<Recipe> { //ing and dir go here
-    return this.http.post<Recipe>(
-      `/api/recipes/${id}`,
-      { name, Title, Rating, UploadDate, Ingredient },
-      httpOptions,
-      )
-  }
-
-}*/

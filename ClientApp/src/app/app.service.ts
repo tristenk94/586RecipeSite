@@ -3,8 +3,11 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { OktaAuth } from '@okta/okta-auth-js';
 
+
+
 @Injectable({ providedIn: 'root' })
 export class OktaAuthService {
+  //userName: string; //save tje username for later use
 
   // IMPORTANT!
   // Replace {clientId} with your actual Client ID
@@ -35,7 +38,8 @@ export class OktaAuthService {
   }
 
   async isAuthenticated() {
-    // Checks if there is a current accessToken in the TokenManger.
+
+     // Checks if there is a current accessToken in the TokenManger.
     return !!(await this.oktaAuth.tokenManager.get('accessToken'));
   }
 
@@ -58,16 +62,29 @@ export class OktaAuthService {
     if (await this.isAuthenticated()) {
       this.observer.next(true);
     }
+    /*
+    // returns an object with user's claims
+    const userClaims = await this.oktaAuth.getUser(this.oktaAuth.tokenManager.get('accessToken'), this.oktaAuth.tokenManager.get('idToken'));
+
+    // user name is exposed directly as property
+   // this.userName = userClaims.name; //saving it for later use within the application
+    sessionStorage.setItem('userName', userClaims.name);*/
+
 
     // Retrieve the saved URL and navigate back
     const url = sessionStorage.getItem('okta-app-url');
     this.router.navigateByUrl(url);
   }
 
+  /*  async getInfo() {
+     
+    }*/
   async logout() {
 
     await this.oktaAuth.signOut({
       postLogoutRedirectUri: this.LOGOUT_REDIRECT_URI
     });
+
+   
   }
 }

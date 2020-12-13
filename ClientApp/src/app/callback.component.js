@@ -6,18 +6,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ProtectedComponent = void 0;
+exports.CallbackComponent = void 0;
 var core_1 = require("@angular/core");
-var ProtectedComponent = /** @class */ (function () {
-    function ProtectedComponent() {
+var CallbackComponent = /** @class */ (function () {
+    function CallbackComponent(okta) {
+        this.okta = okta;
     }
-    ProtectedComponent = __decorate([
-        core_1.Component({
-            selector: 'app-secure',
-            template: "<h2>PROTECTED RESOURCE PLEASE LOG IN TO EDIT/MAKE NEW RECIPES!</h2>",
-        })
-    ], ProtectedComponent);
-    return ProtectedComponent;
+    CallbackComponent.prototype.ngOnInit = function () {
+        // Handles the response from Okta and parses tokens
+        this.okta.handleAuthentication();
+    };
+    CallbackComponent = __decorate([
+        core_1.Component({ template: "" })
+    ], CallbackComponent);
+    return CallbackComponent;
 }());
-exports.ProtectedComponent = ProtectedComponent;
-//# sourceMappingURL=protected.component.js.map
+exports.CallbackComponent = CallbackComponent;
+//# sourceMappingURL=callback.component.js.map

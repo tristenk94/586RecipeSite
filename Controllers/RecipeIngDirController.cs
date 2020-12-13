@@ -26,26 +26,7 @@ namespace recipesiteangthree.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<List<RecipeIngDirVM>>> GetRecipeIngDir(string id)
         {
-            /*IQueryable<RecipeIngDirVM> RecipeIngDir = from r in _context.Recipe
-                                                      from i in _context.Ingredient
-                                                      from d in _context.Direction
-                                                      where r.Id == id
-                                                      //where i.recipeLink == id
-                                                      //where d.recipeLink == id
-                                                      select new RecipeIngDirVM
-                                                      {
-                                                          recipe = r,
-                                                          ingredients = i.
-                                                          directions = d,
-                                                      }
-                              
-                                                      
-                                                      /*select new RecipeIngDirVM
-                               {
-                                   recipe = r,
-                                   ingredients = x.Ingredients.Select(i => i).Where(i => i.recipeLink == id).ToList(),
-                                   directions = y.Directions.Select(d => d).Where(d => d.recipeLink == id).ToList(),
-                               };*/
+           
 
             //the best way i selected all ingredients and directions related to a recipe :D
             var ingreds = from i in _context.Ingredient

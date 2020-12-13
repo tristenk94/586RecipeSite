@@ -36,11 +36,6 @@ import { ProtectedComponent } from './protected.component';
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
-    // Import the module into the application, with configuration
-   /* AuthModule.forRoot({
-      domain: 'dev-3xx3rb0y.us.auth0.com',
-      clientId: '9fAZ99uPhBDXUiqWD2sPoPQWvBgK7Gik',
-    }),*/
     HttpClientModule,
     AppRoutingModule,
     FormsModule,

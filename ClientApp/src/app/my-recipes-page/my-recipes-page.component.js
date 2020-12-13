@@ -8,7 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MyRecipesPageComponent = void 0;
 var core_1 = require("@angular/core");
+//import { OktaAuthService } from '../app.service';
 var MyRecipesPageComponent = /** @class */ (function () {
+    //oktaUserId: string;
     function MyRecipesPageComponent(recipesService) {
         this.recipesService = recipesService;
         this.recipes = [];
@@ -16,7 +18,7 @@ var MyRecipesPageComponent = /** @class */ (function () {
     //load recipes for page
     MyRecipesPageComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.recipesService.getRecipesForUser()
+        this.recipesService.getRecipesForUser() //this.oktaUserId)
             .subscribe(function (recipes) { return _this.recipes = recipes; });
     };
     MyRecipesPageComponent.prototype.onDeleteClicked = function (recipeId) {

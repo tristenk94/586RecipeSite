@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import RecipesService from '../recipes.service';
 import { Recipe } from '../types'
+//import { OktaAuthService } from '../app.service';
+
 
 @Component({
   selector: 'app-my-recipes-page',
@@ -10,14 +12,17 @@ import { Recipe } from '../types'
 export class MyRecipesPageComponent implements OnInit {
 
   recipes: Recipe[] = [];
+  //oktaUserId: string;
+
 
   constructor(
     private recipesService: RecipesService,
+    //public oktaAuth: OktaAuthService,
   ) { }
 
   //load recipes for page
   ngOnInit(): void {
-    this.recipesService.getRecipesForUser()
+    this.recipesService.getRecipesForUser()//this.oktaUserId)
       .subscribe(recipes => this.recipes = recipes);
   }
 

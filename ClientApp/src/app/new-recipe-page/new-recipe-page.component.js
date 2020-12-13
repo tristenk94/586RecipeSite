@@ -33,13 +33,13 @@ var NewRecipePageComponent = /** @class */ (function () {
         this.recipe.Ingredients = Ingredients;
         this.recipeService.saveRecipe(this.recipe)
             .subscribe(function () {
-            _this.router.navigateByUrl('/my-recipes');
             _this.recipe.Ingredients.forEach(function (ing) {
                 ing.recipeLink = _this.recipe.id;
             });
             _this.recipe.Directions.forEach(function (dir) {
                 dir.recipeLink = _this.recipe.id;
             });
+            _this.router.navigateByUrl('/my-recipes');
         });
     };
     NewRecipePageComponent = __decorate([
