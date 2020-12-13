@@ -6,26 +6,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RecipesPageComponent = void 0;
+exports.NavBarComponent = void 0;
 var core_1 = require("@angular/core");
-var RecipesPageComponent = /** @class */ (function () {
-    function RecipesPageComponent(recipesService) {
-        this.recipesService = recipesService;
+var NavBarComponent = /** @class */ (function () {
+    function NavBarComponent(oktaAuth, router) {
+        this.oktaAuth = oktaAuth;
+        this.router = router;
     }
-    RecipesPageComponent.prototype.ngOnInit = function () {
+    NavBarComponent.prototype.ngOnInit = function () {
         var _this = this;
-        //console.log("hi");
-        this.recipesService.getRecipes()
-            .subscribe(function (recipes) { return _this.recipes = recipes; });
+        this.oktaAuth.$isAuthenticated.subscribe(function (val) { return _this.isAuthenticated = val; });
     };
-    RecipesPageComponent = __decorate([
+    NavBarComponent = __decorate([
         core_1.Component({
-            selector: 'app-recipes-page',
-            templateUrl: './recipes-page.component.html',
-            styleUrls: ['./recipes-page.component.css']
+            selector: 'app-nav-bar',
+            templateUrl: './nav-bar.component.html',
+            styleUrls: ['./nav-bar.component.css']
         })
-    ], RecipesPageComponent);
-    return RecipesPageComponent;
+    ], NavBarComponent);
+    return NavBarComponent;
 }());
-exports.RecipesPageComponent = RecipesPageComponent;
-//# sourceMappingURL=recipes-page.component.js.map
+exports.NavBarComponent = NavBarComponent;
+//# sourceMappingURL=nav-bar.component.js.map

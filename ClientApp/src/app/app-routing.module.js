@@ -12,17 +12,21 @@ var router_1 = require("@angular/router");
 var recipes_page_component_1 = require("./recipes-page/recipes-page.component");
 var recipe_detail_page_component_1 = require("./recipe-detail-page/recipe-detail-page.component");
 var edit_recipe_page_component_1 = require("./edit-recipe-page/edit-recipe-page.component");
-var my_fav_recipes_page_component_1 = require("./my-fav-recipes-page/my-fav-recipes-page.component");
 var new_recipe_page_component_1 = require("./new-recipe-page/new-recipe-page.component");
 var my_recipes_page_component_1 = require("./my-recipes-page/my-recipes-page.component");
+var app_guard_1 = require("./app.guard");
+var callback_component_1 = require("./callback.component");
 var routes = [
     { path: '', redirectTo: '/recipes', pathMatch: 'full' },
     { path: 'recipes', component: recipes_page_component_1.RecipesPageComponent, pathMatch: 'full' },
     { path: 'recipes/:id', component: recipe_detail_page_component_1.RecipeDetailPageComponent },
-    { path: 'edit-recipe/:id', component: edit_recipe_page_component_1.EditRecipePageComponent },
-    { path: 'my-fav-recipes', component: my_fav_recipes_page_component_1.MyFavRecipesPageComponent },
+    { path: 'edit-recipe/:id', component: edit_recipe_page_component_1.EditRecipePageComponent, canActivate: [app_guard_1.OktaAuthGuard] },
     { path: 'new-recipe', component: new_recipe_page_component_1.NewRecipePageComponent },
-    { path: 'my-recipes', component: my_recipes_page_component_1.MyRecipesPageComponent }
+    { path: 'my-recipes', component: my_recipes_page_component_1.MyRecipesPageComponent, canActivate: [app_guard_1.OktaAuthGuard] },
+    {
+        path: 'callback',
+        component: callback_component_1.CallbackComponent
+    },
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {

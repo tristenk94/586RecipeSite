@@ -46,7 +46,7 @@ var RecipesService = /** @class */ (function () {
         return result;
     };
     RecipesService.prototype.deleteRecipe = function (id) {
-        return this.http.delete(this.RECIPES_API + "/" + id.toString());
+        return this.http.delete(this.RECIPES_API + "/" + id);
     };
     RecipesService = __decorate([
         core_1.Injectable({

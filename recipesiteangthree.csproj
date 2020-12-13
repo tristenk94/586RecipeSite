@@ -14,6 +14,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi" Version="5.2.7" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.7" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.1.8" />
@@ -59,8 +61,10 @@
   <ItemGroup>
     <None Remove="ClientApp\src\app\app-routing.module.ts" />
     <None Remove="ClientApp\src\app\app.component.spec.ts" />
+    <None Remove="ClientApp\src\app\app.guard.ts" />
     <None Remove="ClientApp\src\app\directions.service.ts" />
     <None Remove="ClientApp\src\app\ingredients.service.ts" />
+    <None Remove="ClientApp\src\app\protected.component.ts" />
     <None Remove="ClientApp\src\app\recipes.service.ts" />
     <None Remove="ClientApp\src\app\types.ts" />
     <None Remove="ClientApp\src\types.ts" />
@@ -80,10 +84,6 @@
     <TypeScriptCompile Update="ClientApp\src\app\types.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

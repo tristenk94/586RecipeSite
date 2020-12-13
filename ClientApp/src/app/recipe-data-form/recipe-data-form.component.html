@@ -48,7 +48,7 @@
 						<input [(ngModel)]="ingred.ingredientAmount" type="text" name="amt-{{i}}">
 					</td>
 					<td>
-						<button class="btn btn-default" type="button" (click)="deleteIngInput(i)">Delete</button>
+						<button id="del" class="btn btn-default" type="button" (click)="deleteIngInput(i)">Delete</button>
 					</td>
 				</tr>
 				<tr>
@@ -59,7 +59,7 @@
 						<input class="form-control" type="text" id="newIngAmt" [(ngModel)]="newIngAmt" name="newIngAmt" />
 					</td>
 					<td>
-						<button class="btn btn-default" type="button" (click)="addIngInput()">Add</button>
+						<button id="add" class="btn btn-default" type="button" (click)="addIngInput()">Add</button>
 					</td>
 				</tr>
 			</tbody>
@@ -87,7 +87,7 @@
 						<input [(ngModel)]="direct.step" type="text" name="dir-{{z}}">
 					</td>
 					<td>
-						<button class="btn btn-default" type="button" (click)="deleteDirInput(z)">Delete</button>
+						<button id="del" class="btn btn-default" type="button" (click)="deleteDirInput(z)">Delete</button>
 					</td>
 				</tr>
 				<tr>
@@ -98,7 +98,7 @@
 						<input class="form-control" type="text" id="newDirDir" [(ngModel)]="newDirDir" name="newDirDir" />
 					</td>
 					<td>
-						<button class="btn btn-default" type="button" (click)="addDirInput()">Add</button>
+						<button id="add" class="btn btn-default" type="button" (click)="addDirInput()">Add</button>
 					</td>
 				</tr>
 			</tbody>

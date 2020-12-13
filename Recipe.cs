@@ -16,11 +16,9 @@ namespace recipesiteangthree
     public string Id { get; set; }
 
     [StringLength(100, MinimumLength = 3)]
-    [Required]
     public string Title { get; set; } //the title of the recipe page
 
     [StringLength(100, MinimumLength = 3)]
-    [Required]
     public string Name { get; set; } //the name of the recipe
 
     //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)] //tells system EXACTLY what to expect, eg date
@@ -30,10 +28,8 @@ namespace recipesiteangthree
     [RegularExpression(@"[1-5]"), StringLength(1)]
     public string Rating { get; set; }
 
-    [Required]
     public List<Ingredient> Ingredients { get; set; } //all the ingredients in this recipe, list form
 
-    [Required]
     public List<Direction> Directions { get; set; } //all the directions in this recipe, list form
 
     [Required]

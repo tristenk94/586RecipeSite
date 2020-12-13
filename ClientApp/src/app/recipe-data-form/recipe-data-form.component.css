@@ -1,0 +1,23 @@
+
+
+#name {
+    max-width: 300px;
+}
+
+#Title{
+    max-width: 800px;
+}
+
+#rating{
+    max-width: 100px;
+}
+#newIngAmt, #newDirStep, #newIngIng, #newDirDir{
+    background-color: lightgray;
+}
+
+#add {
+  background-color: #C44536;
+}
+#del {
+  background-color: #C44536;
+}

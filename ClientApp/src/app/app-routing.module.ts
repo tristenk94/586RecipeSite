@@ -3,19 +3,30 @@ import { Routes, RouterModule } from '@angular/router';
 import { RecipesPageComponent } from './recipes-page/recipes-page.component'
 import { RecipeDetailPageComponent } from './recipe-detail-page/recipe-detail-page.component';
 import { EditRecipePageComponent } from './edit-recipe-page/edit-recipe-page.component';
-import { MyFavRecipesPageComponent } from './my-fav-recipes-page/my-fav-recipes-page.component';
 import { NewRecipePageComponent } from './new-recipe-page/new-recipe-page.component';
 import { MyRecipesPageComponent } from './my-recipes-page/my-recipes-page.component';
+
+import { OktaAuthGuard } from './app.guard';
+import { CallbackComponent } from './callback.component';
+import { ProtectedComponent } from './protected.component';
 
 
 const routes: Routes = [
   { path: '', redirectTo: '/recipes', pathMatch: 'full' },
   { path: 'recipes', component: RecipesPageComponent, pathMatch: 'full' },
   { path: 'recipes/:id', component: RecipeDetailPageComponent },
-  { path: 'edit-recipe/:id', component: EditRecipePageComponent },
-  { path: 'my-fav-recipes', component: MyFavRecipesPageComponent },
+  { path: 'edit-recipe/:id', component: EditRecipePageComponent, canActivate: [OktaAuthGuard] },
   { path: 'new-recipe', component: NewRecipePageComponent },
-  { path: 'my-recipes', component: MyRecipesPageComponent }
+  { path: 'my-recipes', component: MyRecipesPageComponent, canActivate: [OktaAuthGuard] },
+  {
+    path: 'callback',
+    component: CallbackComponent
+  },
+  /*{
+    path: 'protected',
+    component: ProtectedComponent,
+    canActivate: [OktaAuthGuard]
+  }*/
 ];
 
 @NgModule({

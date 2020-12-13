@@ -56,7 +56,7 @@ export default class RecipesService {
 
 
   deleteRecipe(id: string) {
-    return this.http.delete(`${this.RECIPES_API}/${id.toString()}`);
+    return this.http.delete(`${this.RECIPES_API}/${id}`);
   }
 
 }

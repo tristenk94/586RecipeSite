@@ -112,7 +112,7 @@ namespace recipesiteangthree.Controllers
 
         // DELETE: api/Recipes/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Recipe>> DeleteRecipe(int id)
+        public async Task<ActionResult<Recipe>> DeleteRecipe(string id)
         {
             var recipe = await _context.Recipe.FindAsync(id);
             if (recipe == null)

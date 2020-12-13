@@ -9,9 +9,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppComponent = void 0;
 var core_1 = require("@angular/core");
 var AppComponent = /** @class */ (function () {
-    function AppComponent() {
+    function AppComponent(titleService, oktaAuth) {
+        this.titleService = titleService;
+        this.oktaAuth = oktaAuth;
         this.title = 'recipeSite';
     }
+    AppComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.titleService.setTitle('Recipe Site Epic');
+        this.oktaAuth.$isAuthenticated.subscribe(function (val) { return _this.isAuthenticated = val; });
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'app-root',

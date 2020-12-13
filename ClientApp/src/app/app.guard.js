@@ -1,4 +1,10 @@
 "use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -36,31 +42,35 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var testing_1 = require("@angular/core/testing");
-var my_fav_recipes_page_component_1 = require("./my-fav-recipes-page.component");
-describe('MyFavRecipesPageComponent', function () {
-    var component;
-    var fixture;
-    beforeEach(function () { return __awaiter(void 0, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, testing_1.TestBed.configureTestingModule({
-                        declarations: [my_fav_recipes_page_component_1.MyFavRecipesPageComponent]
-                    })
-                        .compileComponents()];
-                case 1:
-                    _a.sent();
-                    return [2 /*return*/];
-            }
+exports.OktaAuthGuard = void 0;
+var core_1 = require("@angular/core");
+var OktaAuthGuard = /** @class */ (function () {
+    function OktaAuthGuard(okta, router) {
+        this.okta = okta;
+        this.router = router;
+    }
+    OktaAuthGuard.prototype.canActivate = function (route, state) {
+        return __awaiter(this, void 0, void 0, function () {
+            var authenticated;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.okta.isAuthenticated()];
+                    case 1:
+                        authenticated = _a.sent();
+                        if (authenticated) {
+                            return [2 /*return*/, true];
+                        }
+                        // Redirect to login flow.
+                        this.okta.login(state.url);
+                        return [2 /*return*/, false];
+                }
+            });
         });
-    }); });
-    beforeEach(function () {
-        fixture = testing_1.TestBed.createComponent(my_fav_recipes_page_component_1.MyFavRecipesPageComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-    });
-    it('should create', function () {
-        expect(component).toBeTruthy();
-    });
-});
-//# sourceMappingURL=my-fav-recipes-page.component.spec.js.map
+    };
+    OktaAuthGuard = __decorate([
+        core_1.Injectable({ providedIn: 'root' })
+    ], OktaAuthGuard);
+    return OktaAuthGuard;
+}());
+exports.OktaAuthGuard = OktaAuthGuard;
+//# sourceMappingURL=app.guard.js.map

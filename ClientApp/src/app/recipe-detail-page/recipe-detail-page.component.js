@@ -32,12 +32,6 @@ var RecipeDetailPageComponent = /** @class */ (function () {
             // console.log(this.recipe.Ingredients);
             _this.isLoading = false;
         });
-        /*this.recipesService.addViewToRecipe(id)
-          .subscribe(() => console.log('Views updated!'));*/
-        /*this.ingredientsService.getIngredientsByRecipeId(id)
-          .subscribe(ingredients => {
-            this.recipe.Ingredients = ingredients;
-          });*/
     };
     RecipeDetailPageComponent = __decorate([
         core_1.Component({
@@ -49,29 +43,4 @@ var RecipeDetailPageComponent = /** @class */ (function () {
     return RecipeDetailPageComponent;
 }());
 exports.RecipeDetailPageComponent = RecipeDetailPageComponent;
-/*import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { fakeRecipes } from '../fake-data';
-import { Recipe } from '../types';
-
-@Component({
-  selector: 'app-recipe-detail-page',
-  templateUrl: './recipe-detail-page.component.html',
-  styleUrls: ['./recipe-detail-page.component.css']
-})
-export class RecipeDetailPageComponent implements OnInit {
-  
-  recipe: Recipe;
-
-  constructor(
-    private route: ActivatedRoute,
-  ) { }
-
-  ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.recipe = fakeRecipes.find(recipe => recipe.id === id);
-  }
-
-}
-*/
 //# sourceMappingURL=recipe-detail-page.component.js.map

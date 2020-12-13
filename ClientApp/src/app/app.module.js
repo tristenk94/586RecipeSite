@@ -11,23 +11,18 @@ var platform_browser_1 = require("@angular/platform-browser");
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var http_1 = require("@angular/common/http");
-var app_component_1 = require("./app.component"); //para idk scaffolding generated
-var nav_menu_component_1 = require("./nav-menu/nav-menu.component");
-var home_component_1 = require("./home/home.component");
-var counter_component_1 = require("./counter/counter.component");
-var fetch_data_component_1 = require("./fetch-data/fetch-data.component");
+var app_component_1 = require("./app.component");
 var app_routing_module_1 = require("./app-routing.module"); //para mi projecto
 var recipes_page_component_1 = require("./recipes-page/recipes-page.component");
 var recipe_detail_page_component_1 = require("./recipe-detail-page/recipe-detail-page.component");
-var my_fav_recipes_page_component_1 = require("./my-fav-recipes-page/my-fav-recipes-page.component");
 var new_recipe_page_component_1 = require("./new-recipe-page/new-recipe-page.component");
 var edit_recipe_page_component_1 = require("./edit-recipe-page/edit-recipe-page.component");
 var my_recipes_page_component_1 = require("./my-recipes-page/my-recipes-page.component");
 var recipe_data_form_component_1 = require("./recipe-data-form/recipe-data-form.component");
 var nav_bar_component_1 = require("./nav-bar/nav-bar.component");
-var auth0_angular_1 = require("@auth0/auth0-angular"); //para auth
-var logout_handler_component_1 = require("./logout-handler/logout-handler.component");
-var login_handler_component_1 = require("./login-handler/login-handler.component");
+//import { AuthModule } from '@auth0/auth0-angular'; //para auth
+var callback_component_1 = require("./callback.component");
+var protected_component_1 = require("./protected.component");
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -35,28 +30,23 @@ var AppModule = /** @class */ (function () {
         core_1.NgModule({
             declarations: [
                 app_component_1.AppComponent,
-                nav_menu_component_1.NavMenuComponent,
-                home_component_1.HomeComponent,
-                counter_component_1.CounterComponent,
-                fetch_data_component_1.FetchDataComponent,
                 recipes_page_component_1.RecipesPageComponent,
                 recipe_detail_page_component_1.RecipeDetailPageComponent,
-                my_fav_recipes_page_component_1.MyFavRecipesPageComponent,
                 new_recipe_page_component_1.NewRecipePageComponent,
                 edit_recipe_page_component_1.EditRecipePageComponent,
                 my_recipes_page_component_1.MyRecipesPageComponent,
                 recipe_data_form_component_1.RecipeDataFormComponent,
                 nav_bar_component_1.NavBarComponent,
-                logout_handler_component_1.LogoutHandlerComponent,
-                login_handler_component_1.LoginHandlerComponent,
+                callback_component_1.CallbackComponent,
+                protected_component_1.ProtectedComponent
             ],
             imports: [
                 platform_browser_1.BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
                 // Import the module into the application, with configuration
-                auth0_angular_1.AuthModule.forRoot({
-                    domain: 'dev-3xx3rb0y.us.auth0.com',
-                    clientId: '9fAZ99uPhBDXUiqWD2sPoPQWvBgK7Gik',
-                }),
+                /* AuthModule.forRoot({
+                   domain: 'dev-3xx3rb0y.us.auth0.com',
+                   clientId: '9fAZ99uPhBDXUiqWD2sPoPQWvBgK7Gik',
+                 }),*/
                 http_1.HttpClientModule,
                 app_routing_module_1.AppRoutingModule,
                 forms_1.FormsModule,

@@ -32,30 +32,3 @@ export class MyRecipesPageComponent implements OnInit {
   }
 
 }
-
-
-/*import { Component, OnInit } from '@angular/core';
-import { fakeRecipes } from '../fake-data';
-import { Recipe } from '../types'
-
-@Component({
-  selector: 'app-my-recipes-page',
-  templateUrl: './my-recipes-page.component.html',
-  styleUrls: ['./my-recipes-page.component.css']
-})
-export class MyRecipesPageComponent implements OnInit {
-
-  recipes: Recipe[] = [];
-
-  constructor() { }
-
-  ngOnInit(): void {
-    this.recipes = fakeRecipes;
-  }
-
-  onDeleteClicked(recipeId: string): void {
-    alert(`Deleting your recipe with id ${recipeId}`)
-  }
-
-}
-*/

@@ -1,5 +1,7 @@
 <div id="page-wrap">
   <div id="max-width-column">
+    <button *ngIf="!isAuthenticated" (click)="oktaAuth.login('/')"> Login </button>
+    <button *ngIf="isAuthenticated" (click)="oktaAuth.logout()"> Logout </button>
     <app-nav-bar></app-nav-bar>
     <div id="content-wrap">
       <router-outlet></router-outlet>
