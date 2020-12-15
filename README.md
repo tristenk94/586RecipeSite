@@ -12,9 +12,15 @@ The Editing process is similar, only the list is modified.
 
 A multiple Recipes view (eg All Recipes or My Recipes) will NOT return the ingredients and directions related to a recipe (since we cannot logically view them on the step). But when we view the recipe with more detail, (eg Editing or Detail View), a Recipe View Model called RecipeIngDir is called which retrieves the detailed information.
 
-All API calls had no issue, the database takes cares of key management and calls.
+When Logging in, you recieve the ability to make, edit, and delete recipes. A new button will appear to the right of login as 'Recipes Editor'.
+Site Login Credentials:
+bob@email.com
+1234ASDFg#
 
-On a local device, this code works just fine and has no issues - only when deployed to a cloud instance does this have trouble with routing + api calls. I have changed my deployment environemtn to remedy the issue discussed during Monday's class - I was unsuccessful. 
+The database takes cares of keys management (assigning, creating for Ingredients, Directions, and Recipes).
+
+On a local device, this code works just fine and has no issues - only when deployed to a cloud instance does this have trouble with routing + api calls. I have changed my deployment environemtn to remedy the issue discussed during Monday's class - I was unsuccessful. All API calls have no issue locally.
+
 
 Please view the demonstration recorded on my local machine here:
 https://drive.google.com/file/d/1BJfYfno-zXhPaBLRZ6OYA-GliwleOjY3/view?usp=sharing
