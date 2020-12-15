@@ -13,6 +13,8 @@ namespace recipesiteangthree
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -33,12 +35,21 @@ namespace recipesiteangthree
             services.AddDbContext<RecipesTheFinal>(options =>
            options.UseSqlServer(Configuration.GetConnectionString("RecipesTheFinal")));
 
-            services.AddControllers().AddNewtonsoftJson();
+            /*services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+            });*/
+
+            //services.AddControllers().AddNewtonsoftJson();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -49,7 +60,6 @@ namespace recipesiteangthree
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            app.UseCors();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -59,6 +69,7 @@ namespace recipesiteangthree
             }
 
             app.UseRouting();
+            //app.UseCors("CorsPolicy");
 
             app.UseEndpoints(endpoints =>
             {

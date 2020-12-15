@@ -1,19 +1,30 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import 'rxjs/add/observable/of';
 import { Recipe, Ingredient, Direction, RecipeIngDirVM } from './types';
 
 @Injectable({
   providedIn: 'root'
 })
-export default class DirectionsService {
-  public API = 'https://localhost:44334/api';
-  public DIRECTIONS_API = `${this.API}/directions`;
+export class DirectionsService {
+
+  public API = '';
+  public DIRECTIONS_API = '';
+
+  base: string = "";
+  http: HttpClient;
 
   constructor(
     //provide http service
-    private http: HttpClient,
-  ) { }
+    http: HttpClient,
+    @Inject(`BASE_URL`) baseURL: string
+
+  ) {
+    this.API = `${baseURL}api`;
+    this.DIRECTIONS_API = `${this.API}/directions`;
+    this.http = http;
+  }
 
   getDirectionForId(id: string): Observable<Direction[]> {
     //console.log("id called");

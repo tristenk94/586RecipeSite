@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router'
 import { Recipe, Ingredient, Direction } from '../types';
-import RecipesService from '../recipes.service';
+import { RecipesService } from '../recipes.service';
 //import { IngredientsService } from '../ingredients.service';
 //import { Title } from '@angular/platform-browser';
-import { map } from 'rxjs/operators';
-import IngredientsService from '../ingredients.service';
-import DirectionsService from '../directions.service';
+import { IngredientsService } from '../ingredients.service';
+import { DirectionsService  }from '../directions.service';
 
 @Component({
   selector: 'app-edit-recipe-page',

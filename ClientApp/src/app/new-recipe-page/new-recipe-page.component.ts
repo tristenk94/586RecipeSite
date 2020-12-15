@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import RecipesService from '../recipes.service';
+import { RecipesService } from '../recipes.service';
 //import { IngredientsService } from '../ingredients.service';
 import { v4 as uuid } from 'uuid';
 import { Recipe, Ingredient, Direction, RecipeIngDirVM } from '../types';

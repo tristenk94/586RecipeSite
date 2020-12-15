@@ -1,19 +1,30 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import 'rxjs/add/observable/of';
 import { Recipe, Ingredient, Direction, RecipeIngDirVM } from './types';
 
 @Injectable({
   providedIn: 'root'
 })
-export default class IngredientsService {
-  public API = 'https://localhost:44334/api';
-  public INGREDIENTS_API = `${this.API}/ingredients`;
+export class IngredientsService {
+
+  public API = '';
+  public INGREDIENTS_API = '';
+
+  base: string = "";
+  http: HttpClient;
 
   constructor(
     //provide http service
-    private http: HttpClient,
-  ) { }
+    http: HttpClient,
+    @Inject(`BASE_URL`) baseURL: string
+
+  ) {
+    this.API = `${baseURL}api`;
+    this.INGREDIENTS_API = `${this.API}/ingredients`;
+    this.http = http;
+  }
 
   getIngredientsForId(id: string): Observable<Ingredient[]> {
     //console.log("id called");

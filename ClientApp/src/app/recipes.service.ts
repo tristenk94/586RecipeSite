@@ -1,19 +1,40 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import 'rxjs/add/observable/of';
 import { Recipe, Ingredient, Direction, RecipeIngDirVM } from './types';
 
 @Injectable({
   providedIn: 'root'
 })
-export default class RecipesService {
-  public API = 'https://localhost:44334/api';
-  public RECIPES_API = `${this.API}/recipes`;
 
-  constructor(
+export class RecipesService {
+
+  public API = '';
+  public RECIPES_API = '';
+
+  /*public API = 'https://localhost:44334/api';
+  public RECIPES_API = `${this.API}/recipes`;*/
+
+  base: string = "";
+  http: HttpClient;
+
+ constructor(
+    //provide http service
+    http: HttpClient,
+    @Inject(`BASE_URL`) baseURL: string
+
+  ) {
+    this.API = `${baseURL}api`;
+    this.RECIPES_API = `${this.API}/recipes`;
+  }
+   /* constructor(
     //provide http service
     private http: HttpClient,
-  ) { }
+  ) { }*/
+
+
+  
 
   getRecipes(): Observable<Array<Recipe>> { //get all recipes
     return this.http.get<Array<Recipe>>(this.RECIPES_API);

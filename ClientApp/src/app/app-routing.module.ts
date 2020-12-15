@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'recipes', component: RecipesPageComponent, pathMatch: 'full' },
   { path: 'recipes/:id', component: RecipeDetailPageComponent },
   { path: 'edit-recipe/:id', component: EditRecipePageComponent, canActivate: [OktaAuthGuard] },
-  { path: 'new-recipe', component: NewRecipePageComponent },
+  { path: 'new-recipe', component: NewRecipePageComponent, canActivate: [OktaAuthGuard] },
   { path: 'my-recipes', component: MyRecipesPageComponent, canActivate: [OktaAuthGuard] },
   {
     path: 'callback',
@@ -30,7 +30,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

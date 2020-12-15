@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import RecipesService from '../recipes.service';
+import { RecipesService } from '../recipes.service';
 import { Recipe } from '../types'
 //import { OktaAuthService } from '../app.service';
 

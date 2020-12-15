@@ -22,13 +22,20 @@ var RecipeDetailPageComponent = /** @class */ (function () {
             .subscribe(function (VM) {
             //this.recipe = new Recipe();
             _this.recipe = VM[0].recipe;
+            _this.name = _this.recipe.name;
+            _this.title = VM[0].recipe.title;
+            //console.log(VM[0].recipe.title);
+            _this.rating = VM[0].recipe.rating;
+            _this.uploadDate = VM[0].recipe.uploadDate;
             //this.recipe.ingredients = VM[1];
             _this.recipe.Ingredients = VM[0].ingredients;
+            _this.Ingredients = _this.recipe.Ingredients;
             // this.Ingredients = VM[0].Ingredients;
             //console.log("Ingreds");
             // console.log(this.recipe.Ingredients);
             // console.log(this.Ingredients);
             _this.recipe.Directions = VM[0].directions;
+            _this.Directions = _this.recipe.Directions;
             //  this.Directions = VM[0].Directions;
             // console.log(this.recipe.Ingredients);
             _this.isLoading = false;

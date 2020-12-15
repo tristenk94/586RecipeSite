@@ -1,4 +1,5 @@
 import { Observable, Observer } from 'rxjs';
+import 'rxjs/add/observable/of';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { OktaAuth } from '@okta/okta-auth-js';
@@ -16,8 +17,8 @@ export class OktaAuthService {
 
   CLIENT_ID = '0oa29o7w9qeYNCarq5d6';
   ISSUER = 'https://dev-5464195.okta.com'
-  LOGIN_REDIRECT_URI = 'https://localhost:44334/callback';
-  LOGOUT_REDIRECT_URI = 'https://localhost:44334/';
+  LOGIN_REDIRECT_URI = 'https://mycomp586project.xyz/callback';
+  LOGOUT_REDIRECT_URI = 'https://mycomp586project.xyz';
 
   oktaAuth = new OktaAuth({
     clientId: this.CLIENT_ID,

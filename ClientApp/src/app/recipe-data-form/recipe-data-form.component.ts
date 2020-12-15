@@ -1,9 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import RecipesService from '../recipes.service';
-import IngredientsService from '../ingredients.service';
-import DirectionsService from '../directions.service';
+import { RecipesService } from '../recipes.service';
+import { IngredientsService } from '../ingredients.service';
+import { DirectionsService } from '../directions.service';
 import { Recipe, Ingredient, Direction, RecipeIngDirVM } from '../types';
 import { v4 as uuid } from 'uuid';
 import { OktaAuthService } from '../app.service';

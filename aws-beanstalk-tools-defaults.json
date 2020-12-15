@@ -1,0 +1,19 @@
+
+{
+    "comment" : "This file is used to help set default values when using the dotnet CLI extension Amazon.ElasticBeanstalk.Tools. For more information run \"dotnet eb --help\" from the project root.",
+    "profile" : "visualstudiouploader",
+    "region"  : "us-west-1",
+    "application" : "recipesite3thenewone",
+    "environment" : "Recipesite3thenewone-prod",
+    "cname"       : "recipesiteangthree-dev",
+    "solution-stack" : "64bit Windows Server 2019 v2.6.0 running IIS 10.0",
+    "environment-type" : "SingleInstance",
+    "instance-profile" : "aws-elasticbeanstalk-ec2-role",
+    "service-role"     : "aws-elasticbeanstalk-service-role",
+    "health-check-url" : "/",
+    "instance-type"    : "t2.medium",
+    "key-pair"         : "deployfinal",
+    "iis-website"      : "Default Web Site",
+    "app-path"         : "/",
+    "enable-xray"      : false
+}

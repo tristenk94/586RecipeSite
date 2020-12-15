@@ -3,22 +3,22 @@
 		<button>Back</button>
 	</a>
 	<section id="intro">
-		<h2>{{recipe.name}}</h2> <!--picture here, floated middle-->
-		<h3>{{recipe.title}}</h3>
-		<p>Rating: {{recipe.rating}} / 5, Uploaded: {{recipe.uploadDate}}</p>
+		<h2>{{name}}</h2> <!--picture here, floated middle-->
+		<h3>{{title}}</h3>
+		<p>Rating: {{rating}} / 5, Uploaded: {{uploadDate}}</p>
 	</section>
 
 	<section id="ingreed">
 		<div class="content-box" id="ingredient">
 			<h3>Ingredients Needed:</h3>
-			<p *ngFor="let ingred of recipe.Ingredients">{{ingred.ingredientName}} - {{ingred.ingredientAmount}}</p>
+			<p *ngFor="let ingred of Ingredients">{{ingred.ingredientName}} - {{ingred.ingredientAmount}}</p>
 		</div>
 	</section>
 	
 	<section id="diir">
 		<div class="content-box" id="direction">
 			<h3>Directions:</h3>
-			<p *ngFor="let direct of recipe.Directions">Step #{{direct.stepNumber}} <br><blockquote>{{direct.step}}</blockquote> </p>
+			<p *ngFor="let direct of Directions">Step #{{direct.stepNumber}} <br><blockquote>{{direct.step}}</blockquote> </p>
 		</div>
 	</section> 
 

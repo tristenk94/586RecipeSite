@@ -22,7 +22,7 @@ var routes = [
     { path: 'recipes', component: recipes_page_component_1.RecipesPageComponent, pathMatch: 'full' },
     { path: 'recipes/:id', component: recipe_detail_page_component_1.RecipeDetailPageComponent },
     { path: 'edit-recipe/:id', component: edit_recipe_page_component_1.EditRecipePageComponent, canActivate: [app_guard_1.OktaAuthGuard] },
-    { path: 'new-recipe', component: new_recipe_page_component_1.NewRecipePageComponent },
+    { path: 'new-recipe', component: new_recipe_page_component_1.NewRecipePageComponent, canActivate: [app_guard_1.OktaAuthGuard] },
     { path: 'my-recipes', component: my_recipes_page_component_1.MyRecipesPageComponent, canActivate: [app_guard_1.OktaAuthGuard] },
     {
         path: 'callback',
@@ -39,7 +39,7 @@ var AppRoutingModule = /** @class */ (function () {
     }
     AppRoutingModule = __decorate([
         core_1.NgModule({
-            imports: [router_1.RouterModule.forRoot(routes)],
+            imports: [router_1.RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
             exports: [router_1.RouterModule]
         })
     ], AppRoutingModule);
