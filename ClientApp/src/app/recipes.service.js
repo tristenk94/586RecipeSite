@@ -18,16 +18,17 @@ var RecipesService = /** @class */ (function () {
     http, baseURL) {
         this.API = '';
         this.RECIPES_API = '';
-        /*public API = 'https://localhost:44334/api';
-        public RECIPES_API = `${this.API}/recipes`;*/
+        /* public API = 'https://localhost:44334/api';
+         public RECIPES_API = `${this.API}/recipes`;*/
         this.base = "";
         this.API = baseURL + "api";
         this.RECIPES_API = this.API + "/recipes";
+        this.http = http;
     }
     /* constructor(
-     //provide http service
-     private http: HttpClient,
-   ) { }*/
+      //provide http service
+      private http: HttpClient,
+    ) { } */
     RecipesService.prototype.getRecipes = function () {
         return this.http.get(this.RECIPES_API);
     };

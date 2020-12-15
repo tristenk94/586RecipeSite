@@ -12,6 +12,9 @@ export class IngredientsService {
   public API = '';
   public INGREDIENTS_API = '';
 
+  /*public API = 'https://localhost:44334/api';
+  public INGREDIENTS_API = `${this.API}/ingredients`;*/
+
   base: string = "";
   http: HttpClient;
 
@@ -25,6 +28,11 @@ export class IngredientsService {
     this.INGREDIENTS_API = `${this.API}/ingredients`;
     this.http = http;
   }
+
+  /*constructor(
+    //provide http service
+    private http: HttpClient,
+  ) { }*/
 
   getIngredientsForId(id: string): Observable<Ingredient[]> {
     //console.log("id called");

@@ -17,8 +17,8 @@ export class OktaAuthService {
 
   CLIENT_ID = '0oa29o7w9qeYNCarq5d6';
   ISSUER = 'https://dev-5464195.okta.com'
-  LOGIN_REDIRECT_URI = 'https://mycomp586project.xyz/callback';
-  LOGOUT_REDIRECT_URI = 'https://mycomp586project.xyz';
+  LOGIN_REDIRECT_URI = 'https://localhost:44334/callback';
+  LOGOUT_REDIRECT_URI = 'https://localhost:44334/';
 
   oktaAuth = new OktaAuth({
     clientId: this.CLIENT_ID,

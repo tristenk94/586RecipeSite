@@ -18,11 +18,17 @@ var DirectionsService = /** @class */ (function () {
     http, baseURL) {
         this.API = '';
         this.DIRECTIONS_API = '';
+        /* public API = 'https://localhost:44334/api';
+         public DIRECTIONS_API = `${this.API}/directions`;*/
         this.base = "";
         this.API = baseURL + "api";
         this.DIRECTIONS_API = this.API + "/directions";
         this.http = http;
     }
+    /*constructor(
+      //provide http service
+      private http: HttpClient,
+    ) { }*/
     DirectionsService.prototype.getDirectionForId = function (id) {
         //console.log("id called");
         return this.http.get(this.DIRECTIONS_API + "/" + id);

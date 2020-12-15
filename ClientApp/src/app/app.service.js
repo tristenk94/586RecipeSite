@@ -58,8 +58,8 @@ var OktaAuthService = /** @class */ (function () {
         // If using a custom authorization server, ISSUER should be 'https://{yourOktaDomain}/oauth2/${authServerId}'
         this.CLIENT_ID = '0oa29o7w9qeYNCarq5d6';
         this.ISSUER = 'https://dev-5464195.okta.com';
-        this.LOGIN_REDIRECT_URI = 'https://mycomp586project.xyz/callback';
-        this.LOGOUT_REDIRECT_URI = 'https://mycomp586project.xyz';
+        this.LOGIN_REDIRECT_URI = 'https://localhost:44334/callback';
+        this.LOGOUT_REDIRECT_URI = 'https://localhost:44334/';
         this.oktaAuth = new okta_auth_js_1.OktaAuth({
             clientId: this.CLIENT_ID,
             issuer: this.ISSUER,

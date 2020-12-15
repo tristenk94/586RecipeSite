@@ -13,7 +13,7 @@ export class RecipesService {
   public API = '';
   public RECIPES_API = '';
 
-  /*public API = 'https://localhost:44334/api';
+ /* public API = 'https://localhost:44334/api';
   public RECIPES_API = `${this.API}/recipes`;*/
 
   base: string = "";
@@ -26,12 +26,13 @@ export class RecipesService {
 
   ) {
     this.API = `${baseURL}api`;
-    this.RECIPES_API = `${this.API}/recipes`;
+   this.RECIPES_API = `${this.API}/recipes`;
+   this.http = http;
   }
-   /* constructor(
+  /* constructor(
     //provide http service
     private http: HttpClient,
-  ) { }*/
+  ) { } */
 
 
   

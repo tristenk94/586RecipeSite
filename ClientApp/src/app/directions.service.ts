@@ -12,6 +12,9 @@ export class DirectionsService {
   public API = '';
   public DIRECTIONS_API = '';
 
+ /* public API = 'https://localhost:44334/api';
+  public DIRECTIONS_API = `${this.API}/directions`;*/
+
   base: string = "";
   http: HttpClient;
 
@@ -25,6 +28,11 @@ export class DirectionsService {
     this.DIRECTIONS_API = `${this.API}/directions`;
     this.http = http;
   }
+
+  /*constructor(
+    //provide http service
+    private http: HttpClient,
+  ) { }*/
 
   getDirectionForId(id: string): Observable<Direction[]> {
     //console.log("id called");

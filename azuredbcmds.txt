@@ -1,0 +1,6 @@
+azure db sql
+account: auser2084320384
+pass: $(UJ(R#(#fj(FJ#(HR9hhdfhfharha8484
+
+dotnet ef dbcontext scaffold "Data Source=recipesthefinalserver.database.windows.net;Initial Catalog=RecipesTheFinal;User ID=auser2084320384;Password=$(UJ(R#(#fj(FJ#(HR9hhdfhfharha8484" Microsoft.EntityFrameworkCore.SqlServer --output-dir Models
+

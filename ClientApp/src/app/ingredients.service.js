@@ -18,11 +18,17 @@ var IngredientsService = /** @class */ (function () {
     http, baseURL) {
         this.API = '';
         this.INGREDIENTS_API = '';
+        /*public API = 'https://localhost:44334/api';
+        public INGREDIENTS_API = `${this.API}/ingredients`;*/
         this.base = "";
         this.API = baseURL + "api";
         this.INGREDIENTS_API = this.API + "/ingredients";
         this.http = http;
     }
+    /*constructor(
+      //provide http service
+      private http: HttpClient,
+    ) { }*/
     IngredientsService.prototype.getIngredientsForId = function (id) {
         //console.log("id called");
         return this.http.get(this.INGREDIENTS_API + "/" + id);
