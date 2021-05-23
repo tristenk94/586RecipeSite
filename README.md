@@ -1,4 +1,4 @@
-# 586RecipeSite
+# RecipeSite
 This is my Application for my 586 Class.
 
 This is a Recipe based website in which a Recipe, a model, has a certain set of attributes (Name, Title, Rating, Upload Date, Ingredients, and Directions). 
@@ -19,7 +19,7 @@ bob@email.com
 
 The database takes cares of keys management (assigning, creating for Ingredients, Directions, and Recipes).
 
-On a local device, this code works just fine and has no issues - only when deployed to a cloud instance does this have trouble with routing + api calls. I have changed my deployment environemtn to remedy the issue discussed during Monday's class - I was unsuccessful. All API calls have no issue locally.
+On a local device, this code works just fine and has no issues - only when deployed to a cloud instance does this have trouble with routing + api calls. All API calls have no issue locally.
 
 
 Please view the demonstration recorded on my local machine here:
