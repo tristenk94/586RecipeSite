@@ -19,11 +19,8 @@ bob@email.com
 
 The database takes cares of keys management (assigning, creating for Ingredients, Directions, and Recipes).
 
-On a local device, this code works just fine and has no issues - only when deployed to a cloud instance does this have trouble with routing + api calls. All API calls have no issue locally.
-
-
 Please view the demonstration recorded on my local machine here:
 https://drive.google.com/file/d/1BJfYfno-zXhPaBLRZ6OYA-GliwleOjY3/view?usp=sharing
 
-The Site did use a domain: mycomp586project.xyz but I couldnt get the DNS to resolve in time, hence I have deployed the site to an Azure page.
+The Site did use a domain: mycomp586project.xyz
 https://recipesiteangthree20201214204126.azurewebsites.net/recipes
