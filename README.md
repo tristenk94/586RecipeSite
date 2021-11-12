@@ -22,5 +22,5 @@ The database takes cares of keys management (assigning, creating for Ingredients
 Please view the demonstration recorded on my local machine here:
 https://drive.google.com/file/d/1BJfYfno-zXhPaBLRZ6OYA-GliwleOjY3/view?usp=sharing
 
-The Site did use a domain: mycomp586project.xyz
-https://recipesiteangthree20201214204126.azurewebsites.net/recipes
+The Site did use a domain hosted by AWS: mycomp586project.xyz
+Another copy of the site was also hosted on MS Azure: https://recipesiteangthree20201214204126.azurewebsites.net/recipes
